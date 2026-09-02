@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <canvas id="cyber-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+
+  <%- include('../../partials/header') %>
+  <%- include('../../partials/flash') %>
+
+  <main class="main-content">
+    <section class="section" style="padding-top: 4rem;">
+      <div class="container" style="max-width: 960px;">
+        <div class="cyber-card" style="margin-bottom: 2.5rem; padding: 0; overflow: hidden;">
+          <img src="<%= hackathon.bannerImage %>" alt="<%= hackathon.title %>" style="width: 100%; height: 280px; object-fit: cover;">
+          
+          <div style="padding: 2.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+              <div class="section-badge" style="margin-bottom: 0;"><%= hackathon.theme %></div>
+              <span class="status-badge <%= hackathon.status === 'active' ? 'status-accepted' : 'status-tech_assessment' %>">
+                ● <%= hackathon.status.toUpperCase() %>
+              </span>
+            </div>
+
+            <h1 style="font-size: clamp(1.8rem, 3.5vw, 2.6rem); margin-bottom: 0.75rem;"><%= hackathon.title %></h1>
+            <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 1.5rem;"><%= hackathon.tagline %></p>
+
+            <div style="background: rgba(4, 7, 17, 0.7); border: 1px solid var(--border-cyan); border-radius: var(--border-radius-md); padding: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; text-align: center; margin-bottom: 2rem;">
+              <div>
+                <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">PRIZE POOL</div>
+                <div style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: var(--neon-emerald);"><%= hackathon.prizePool %></div>
+              </div>
+              <div>
+                <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">DEADLINE</div>
+                <div style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: #fff;"><%= new Date(hackathon.registrationDeadline).toLocaleDateString() %></div>
+              </div>
+              <div>
+                <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">PARTICIPANTS</div>
+                <div style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: var(--neon-cyan);"><%= hackathon.participantCount %> Builders</div>
+              </div>
+            </div>
+
+            <!-- REGISTRATION BUTTON -->
+            <% if (isRegistered) { %>
+              <div style="background: rgba(0, 255, 157, 0.1); border: 1px solid var(--neon-emerald); border-radius: 8px; padding: 1rem; text-align: center; color: var(--neon-emerald); font-weight: 700; font-family: var(--font-mono); margin-bottom: 2rem;">
+                ✓ YOU ARE REGISTERED IN THIS HACKATHON ARENA
+              </div>
+            <% } else { %>
+              <form action="/hackathons/<%= hackathon._id %>/register" method="POST" style="margin-bottom: 2rem;">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">⚡ Secure Your Builder Seat (Free)</button>
+              </form>
+            <% } %>
+
+            <!-- CHALLENGE OVERVIEW -->
+            <div style="margin-bottom: 2rem;">
+              <h3 style="color: var(--neon-cyan); margin-bottom: 0.75rem;">Challenge Description</h3>
+              <p style="font-size: 1rem; line-height: 1.8;"><%= hackathon.description %></p>
+            </div>
+
+            <!-- RULES -->
+            <% if (hackathon.rules && hackathon.rules.length > 0) { %>
+              <div style="margin-bottom: 2rem;">
+                <h3 style="color: var(--neon-cyan); margin-bottom: 0.75rem;">Competition Rules</h3>
+                <ul class="track-highlights">
+                  <% hackathon.rules.forEach(rule => { %>
+                    <li><%= rule %></li>
+                  <% }) %>
+                </ul>
+              </div>
+            <% } %>
+
+            <!-- SPONSORS -->
+            <% if (hackathon.sponsors && hackathon.sponsors.length > 0) { %>
+              <div>
+                <h3 style="color: var(--neon-cyan); margin-bottom: 1rem;">Compute & Tooling Sponsors</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                  <% hackathon.sponsors.forEach(sp => { %>
+                    <div style="background: rgba(255,255,255,0.04); border: 1px solid var(--border-glass); border-radius: 8px; padding: 0.75rem 1.25rem;">
+                      <strong style="color: #fff;"><%= sp.name %></strong>
+                      <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--neon-cyan); margin-left: 0.5rem;"><%= sp.tier %></span>
+                    </div>
+                  <% }) %>
+                </div>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../../partials/ai-assistant') %>
+  <%- include('../../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <canvas id="cyber-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+
+  <%- include('../../partials/header') %>
+  <%- include('../../partials/flash') %>
+
+  <main class="main-content">
+    <section class="section" style="padding-top: 3.5rem;">
+      <div class="container">
+        <!-- DASHBOARD TOP GREETING -->
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2.5rem;">
+          <div>
+            <div class="section-badge">STUDENT & BUILDER HUD</div>
+            <h1 style="font-size: 2.2rem; margin-bottom: 0.25rem;">
+              Welcome back, <span class="gradient-text"><%= user.name %></span>
+            </h1>
+            <p style="font-size: 0.95rem; color: var(--text-secondary);">
+              Student Identity: <span style="font-family: var(--font-mono); color: var(--neon-cyan);"><%= user.studentId || 'Applicant ID Pending Matriculation' %></span>
+            </p>
+          </div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="/launchpad/new" class="btn btn-primary">
+              <span>🚀 Deploy New Project</span>
+            </a>
+            <% if (application) { %>
+              <a href="/application-status" class="btn btn-secondary">
+                <span>View Application Dossier</span>
+              </a>
+            <% } else { %>
+              <a href="/apply" class="btn btn-emerald">
+                <span>⚡ Complete Application</span>
+              </a>
+            <% } %>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 2.5rem; align-items: start;">
+          <!-- LEFT COLUMN: HOLOGRAPHIC STUDENT ID CARD & COMPUTE STATUS -->
+          <div>
+            <!-- HOLOGRAPHIC ID CARD -->
+            <div class="holo-id-card" style="margin-bottom: 2rem;">
+              <div class="holo-header">
+                <div class="holo-institute-name">⚡ NEXUS INSTITUTE OF TECHNOLOGY</div>
+                <div class="holo-chip"></div>
+              </div>
+
+              <div class="holo-body">
+                <img src="<%= user.avatar %>" alt="<%= user.name %>" class="holo-photo">
+                <div class="holo-details">
+                  <div class="holo-name"><%= user.name %></div>
+                  <div class="holo-id-num"><%= user.studentId || 'ID: NIT-2026-CANDIDATE' %></div>
+                  <div class="holo-tier-badge"><%= user.badgeTier || 'Neural Architect' %></div>
+                  <div style="font-size: 0.78rem; color: #94a3b8; margin-top: 0.35rem; text-transform: uppercase;">
+                    <%= user.track ? user.track.replace(/-/g, ' ') : 'B.Tech AI & CS' %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="holo-footer">
+                <div>
+                  <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #94a3b8;">CLEARANCE LEVEL</div>
+                  <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--neon-emerald); font-weight: 700;">
+                    <%= user.role === 'admin' ? 'ROOT ADMIN' : 'TIER-1 FELLOW' %>
+                  </div>
+                </div>
+                <div class="qr-code-placeholder" title="Encrypted verification hash">
+                  <svg viewBox="0 0 100 100" width="100%" height="100%" fill="#000">
+                    <rect width="25" height="25" />
+                    <rect x="75" width="25" height="25" />
+                    <rect y="75" width="25" height="25" />
+                    <rect x="35" y="35" width="30" height="30" />
+                    <rect x="10" y="35" width="15" height="15" />
+                    <rect x="75" y="35" width="15" height="15" />
+                    <rect x="35" y="75" width="15" height="15" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- COMPUTE CREDITS POD -->
+            <div class="cyber-card" style="padding: 1.75rem; margin-bottom: 2rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h4 style="color: var(--neon-cyan); font-size: 1.05rem;">⚡ H100 Compute Quota</h4>
+                <span class="status-badge status-accepted">ACTIVE</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.9rem; margin-bottom: 0.5rem;">
+                <span>Allocated Balance:</span>
+                <strong style="color: #fff;"><%= user.computeHours || 120 %> GPU Hours</strong>
+              </div>
+              <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; margin-bottom: 1rem;">
+                <div style="width: 35%; height: 100%; background: linear-gradient(90deg, var(--neon-cyan), var(--neon-emerald));"></div>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted);">
+                <span>Used: 42.5 Hrs</span>
+                <span>Remaining: <%= (user.computeHours || 120) - 42 %> Hrs</span>
+              </div>
+            </div>
+
+            <!-- EDIT PROFILE QUICK FORM -->
+            <div class="cyber-card" style="padding: 1.75rem;">
+              <h4 style="margin-bottom: 1rem; color: #fff;">Update Profile Credentials</h4>
+              <form action="/dashboard/profile" method="POST">
+                <div class="form-group">
+                  <label class="form-label" for="bio" style="font-size: 0.85rem;">Bio / What are you building?</label>
+                  <textarea id="bio" name="bio" class="form-textarea" style="min-height: 80px; font-size: 0.88rem;"><%= user.bio %></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="githubUsername" style="font-size: 0.85rem;">GitHub Handle</label>
+                  <input type="text" id="githubUsername" name="githubUsername" class="form-input" value="<%= user.githubUsername || '' %>" placeholder="github-username">
+                </div>
+                <button type="submit" class="btn btn-sm btn-secondary btn-block">Update Credentials</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: APPLICATION STATUS & STUDENT PROJECTS -->
+          <div>
+            <!-- APPLICATION SUMMARY WIDGET -->
+            <% if (application) { %>
+              <div class="cyber-card" style="padding: 2rem; margin-bottom: 2rem; border-color: var(--border-cyan);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                  <div>
+                    <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--neon-cyan);">ACTIVE ADMISSIONS DOSSIER</span>
+                    <h3 style="font-size: 1.3rem; margin: 0.2rem 0;"><%= application.applicationId %></h3>
+                  </div>
+                  <span class="status-badge status-<%= application.status %>">
+                    ● <%= application.status.replace('_', ' ').toUpperCase() %>
+                  </span>
+                </div>
+
+                <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+                  Track: <strong style="color: #fff;"><%= application.track.replace(/-/g, ' ').toUpperCase() %></strong> • 
+                  Submitted: <%= new Date(application.createdAt).toLocaleDateString() %>
+                </p>
+
+                <div style="display: flex; gap: 1rem;">
+                  <a href="/application-status" class="btn btn-sm btn-primary">Track Real-Time Status →</a>
+                </div>
+              </div>
+            <% } %>
+
+            <!-- STUDENT LAUNCHPAD PROJECTS -->
+            <div class="cyber-card" style="padding: 2rem; margin-bottom: 2rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1.3rem;">Your Launchpad Deployments</h3>
+                <a href="/launchpad/new" class="btn btn-sm btn-primary">+ New Project</a>
+              </div>
+
+              <% if (userProjects && userProjects.length > 0) { %>
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                  <% userProjects.forEach(proj => { %>
+                    <div style="background: rgba(4, 7, 17, 0.6); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.25rem; display: flex; justify-content: space-between; align-items: center;">
+                      <div>
+                        <h4 style="color: #fff; margin-bottom: 0.25rem;"><%= proj.title %></h4>
+                        <p style="font-size: 0.85rem; margin: 0;"><%= proj.tagline %></p>
+                      </div>
+                      <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <span class="module-pill" style="color: var(--neon-cyan);">▲ <%= proj.upvotes %> upvotes</span>
+                        <a href="/launchpad" class="btn btn-sm btn-outline">View</a>
+                      </div>
+                    </div>
+                  <% }) %>
+                </div>
+              <% } else { %>
+                <div style="text-align: center; padding: 2.5rem 1rem; border: 1px dashed var(--border-glass); border-radius: 8px;">
+                  <div style="font-size: 2rem; margin-bottom: 0.5rem;">🚀</div>
+                  <h4 style="margin-bottom: 0.5rem;">No Projects Published Yet</h4>
+                  <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">Publish your AI agents, open-source repos, or startup MVPs to the community launchpad.</p>
+                  <a href="/launchpad/new" class="btn btn-sm btn-primary">Deploy First Project</a>
+                </div>
+              <% } %>
+            </div>
+
+            <!-- UPCOMING HACKATHONS WIDGET -->
+            <% if (upcomingHackathon) { %>
+              <div class="cyber-card" style="padding: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                  <div class="section-badge" style="margin-bottom: 0;">FEATURED SPRINT</div>
+                  <span class="status-badge status-accepted">REGISTRATION LIVE</span>
+                </div>
+                <h3 style="margin-bottom: 0.5rem;"><%= upcomingHackathon.title %></h3>
+                <p style="font-size: 0.9rem; margin-bottom: 1.25rem;"><%= upcomingHackathon.tagline %></p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div style="font-family: var(--font-mono); color: var(--neon-emerald); font-weight: 700;">
+                    💰 <%= upcomingHackathon.prizePool %>
+                  </div>
+                  <a href="/hackathons/<%= upcomingHackathon.slug %>" class="btn btn-sm btn-primary">Enter Hackathon →</a>
+                </div>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../../partials/ai-assistant') %>
+  <%- include('../../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

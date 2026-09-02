@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <canvas id="cyber-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+
+  <%- include('../../partials/header') %>
+  <%- include('../../partials/flash') %>
+
+  <main class="main-content">
+    <section class="section" style="padding-top: 4rem;">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3rem;">
+          <div>
+            <div class="section-badge">STUDENT INNOVATION HUB</div>
+            <h1 class="section-title">Nexus <span class="gradient-text">Project Launchpad</span></h1>
+            <p class="section-desc">
+              Discover and upvote live AI systems, autonomous agents, and venture prototypes built by Nexus fellows.
+            </p>
+          </div>
+
+          <div>
+            <a href="/launchpad/new" class="btn btn-primary btn-lg">
+              <span>🚀 Deploy Project</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Filter Tracks -->
+        <div class="mentors-filter-bar">
+          <a href="/launchpad" class="filter-btn <%= !currentTrack ? 'active' : '' %>">All Categories</a>
+          <a href="/launchpad?track=AI+Agents+%26+LLMs" class="filter-btn <%= currentTrack === 'AI Agents & LLMs' ? 'active' : '' %>">AI Agents & LLMs</a>
+          <a href="/launchpad?track=Robotics+%26+Vision" class="filter-btn <%= currentTrack === 'Robotics & Vision' ? 'active' : '' %>">Robotics & Vision</a>
+          <a href="/launchpad?track=Distributed+Systems" class="filter-btn <%= currentTrack === 'Distributed Systems' ? 'active' : '' %>">Distributed Systems</a>
+          <a href="/launchpad?track=DevTools" class="filter-btn <%= currentTrack === 'DevTools' ? 'active' : '' %>">DevTools</a>
+          <a href="/launchpad?track=Web3+%26+Fintech" class="filter-btn <%= currentTrack === 'Web3 & Fintech' ? 'active' : '' %>">Web3 & Fintech</a>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+          <% if (projects && projects.length > 0) { %>
+            <% projects.forEach(project => { %>
+              <div class="cyber-card project-card">
+                <div>
+                  <img src="<%= project.imageUrl %>" alt="<%= project.title %>" class="project-img">
+                  
+                  <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                    <h3 style="color: #fff; font-size: 1.25rem;"><%= project.title %></h3>
+                    <span class="status-badge status-accepted" style="font-size: 0.7rem;"><%= project.badge %></span>
+                  </div>
+
+                  <p style="font-size: 0.92rem; margin-bottom: 1.25rem; color: #cbd5e1;"><%= project.tagline %></p>
+                  
+                  <div style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.25rem;">
+                    <% project.tags.forEach(tag => { %>
+                      <span class="module-pill"><%= tag %></span>
+                    <% }) %>
+                  </div>
+                </div>
+
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-glass); padding-top: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.6rem;">
+                      <img src="<%= project.creatorAvatar %>" alt="<%= project.creatorName %>" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1px solid var(--neon-cyan);">
+                      <div style="font-size: 0.85rem; color: #94a3b8;">
+                        <strong style="color: #fff;"><%= project.creatorName %></strong>
+                      </div>
+                    </div>
+
+                    <button type="button" class="project-upvote-btn" data-id="<%= project._id %>">
+                      <span>▲</span>
+                      <span class="upvote-count"><%= project.upvotes %></span>
+                    </button>
+                  </div>
+
+                  <% if (project.githubUrl || project.demoUrl) { %>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 0.8rem;">
+                      <% if (project.demoUrl) { %>
+                        <a href="<%= project.demoUrl %>" target="_blank" class="btn btn-sm btn-outline" style="flex: 1; font-size: 0.78rem;">Live Demo ↗</a>
+                      <% } %>
+                      <% if (project.githubUrl) { %>
+                        <a href="<%= project.githubUrl %>" target="_blank" class="btn btn-sm btn-outline" style="flex: 1; font-size: 0.78rem;">GitHub ↗</a>
+                      <% } %>
+                    </div>
+                  <% } %>
+                </div>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <div class="cyber-card" style="grid-column: 1 / -1; text-align: center; padding: 4rem;">
+              <h3>No projects found in this track.</h3>
+              <p style="margin-top: 0.5rem;">Be the first builder to ship something in this category!</p>
+              <a href="/launchpad/new" class="btn btn-primary" style="margin-top: 1.5rem;">Deploy Project</a>
+            </div>
+          <% } %>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../../partials/ai-assistant') %>
+  <%- include('../../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

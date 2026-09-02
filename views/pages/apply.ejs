@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <canvas id="cyber-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+
+  <%- include('../partials/header') %>
+  <%- include('../partials/flash') %>
+
+  <main class="main-content">
+    <section class="section" style="padding-top: 3.5rem;">
+      <div class="container wizard-container">
+        <div class="section-header" style="margin-bottom: 2.5rem;">
+          <div class="section-badge">ADMISSIONS DOSSIER - COHORT 2026</div>
+          <h1 class="section-title">Nexus <span class="gradient-text">Admissions Sequence</span></h1>
+          <p class="section-desc">
+            Complete the 4-stage technical dossier. Evaluated on your code, problem-solving depth, and ambitious builder vision.
+          </p>
+        </div>
+
+        <!-- WIZARD STEP INDICATOR -->
+        <div class="wizard-steps">
+          <div class="step-item active" data-step="1">
+            <div class="step-num">01</div>
+            <div class="step-label">Identity & Profiles</div>
+          </div>
+          <div class="step-item" data-step="2">
+            <div class="step-num">02</div>
+            <div class="step-label">Track & Academics</div>
+          </div>
+          <div class="step-item" data-step="3">
+            <div class="step-num">03</div>
+            <div class="step-label">Technical Background</div>
+          </div>
+          <div class="step-item" data-step="4">
+            <div class="step-num">04</div>
+            <div class="step-label">H100 Vision Challenge</div>
+          </div>
+        </div>
+
+        <!-- WIZARD CARD & FORM -->
+        <div class="wizard-card">
+          <form id="admissions-wizard-form" action="/apply" method="POST">
+            <!-- STEP 1: IDENTITY & PROFILES -->
+            <div class="step-panel active" data-step="1">
+              <h3 style="margin-bottom: 1.5rem; color: var(--neon-cyan);">Step 1: Personal Identification & Developer Profiles</h3>
+              
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label" for="fullName">Full Legal Name *</label>
+                  <input type="text" id="fullName" name="fullName" class="form-input" required placeholder="e.g. Alex Chen" value="<%= user ? user.name : '' %>">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="email">Primary Email Signature *</label>
+                  <input type="email" id="email" name="email" class="form-input" required placeholder="alex@example.com" value="<%= user ? user.email : '' %>">
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label" for="phone">Phone / WhatsApp Number *</label>
+                  <input type="tel" id="phone" name="phone" class="form-input" required placeholder="+91 98765 43210">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="city">Current City & Country *</label>
+                  <input type="text" id="city" name="city" class="form-input" required placeholder="Bangalore, India">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="githubUrl">GitHub / GitLab Profile URL (Highly Recommended)</label>
+                <input type="url" id="githubUrl" name="githubUrl" class="form-input" placeholder="https://github.com/yourhandle">
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label" for="portfolioUrl">Personal Portfolio / Website</label>
+                  <input type="url" id="portfolioUrl" name="portfolioUrl" class="form-input" placeholder="https://yourdomain.dev">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="linkedinUrl">LinkedIn / X (Twitter) Profile</label>
+                  <input type="url" id="linkedinUrl" name="linkedinUrl" class="form-input" placeholder="https://x.com/yourhandle">
+                </div>
+              </div>
+
+              <div style="display: flex; justify-content: flex-end; margin-top: 2rem;">
+                <button type="button" class="btn btn-primary btn-next-step">Proceed to Track Selection →</button>
+              </div>
+            </div>
+
+            <!-- STEP 2: TRACK & ACADEMICS -->
+            <div class="step-panel" data-step="2">
+              <h3 style="margin-bottom: 1.5rem; color: var(--neon-cyan);">Step 2: Program Track & Academic Background</h3>
+
+              <div class="form-group">
+                <label class="form-label" for="track">Select Desired Academic / Venture Track *</label>
+                <select id="track" name="track" class="form-select" required>
+                  <option value="btech-ai-cs" <%= (user && user.track === 'btech-ai-cs') ? 'selected' : '' %>>B.Tech in Artificial Intelligence & Computer Science (4 Years)</option>
+                  <option value="btech-autonomous-systems" <%= (user && user.track === 'btech-autonomous-systems') ? 'selected' : '' %>>B.Tech in Autonomous Systems & Robotics (4 Years)</option>
+                  <option value="founder-fellowship" <%= (user && user.track === 'founder-fellowship') ? 'selected' : '' %>>Founder Fellowship & Venture Residency (1 Year)</option>
+                </select>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label" for="highestEducation">Highest Level of Education *</label>
+                  <select id="highestEducation" name="highestEducation" class="form-select" required>
+                    <option value="Grade 12 / Senior Secondary (CBSE/ISC/State)">Grade 12 / Senior Secondary (CBSE/ISC/State/IB)</option>
+                    <option value="Undergraduate (Currently Enrolled / Dropped out to build)">Undergraduate (Currently Enrolled / Dropped out to build)</option>
+                    <option value="Bachelor's Degree Completed">Bachelor's Degree Completed</option>
+                    <option value="Self-Taught / Alternative High School">Self-Taught / Alternative High School</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="graduationYear">Expected / Completed Graduation Year *</label>
+                  <input type="number" id="graduationYear" name="graduationYear" class="form-input" required min="2020" max="2030" value="2026">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="schoolOrCollege">School / College Name *</label>
+                <input type="text" id="schoolOrCollege" name="schoolOrCollege" class="form-input" required placeholder="e.g. National Public School or IIT/NIT/State Univ">
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label" for="gpaOrPercentage">Grade 12 GPA / Percentage</label>
+                  <input type="text" id="gpaOrPercentage" name="gpaOrPercentage" class="form-input" placeholder="e.g. 94.2% or 3.9 GPA">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="standardizedTestScore">Standardized Scores (JEE / SAT / AP / IOI) (Optional)</label>
+                  <input type="text" id="standardizedTestScore" name="standardizedTestScore" class="form-input" placeholder="e.g. JEE Main 99.4 percentile, SAT 1520">
+                </div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+                <button type="button" class="btn btn-outline btn-prev-step">← Back</button>
+                <button type="button" class="btn btn-primary btn-next-step">Proceed to Technical Background →</button>
+              </div>
+            </div>
+
+            <!-- STEP 3: TECHNICAL BACKGROUND -->
+            <div class="step-panel" data-step="3">
+              <h3 style="margin-bottom: 1.5rem; color: var(--neon-cyan);">Step 3: Technical Experience & Project Showcase</h3>
+
+              <div class="form-group">
+                <label class="form-label" for="experienceLevel">Self-Assessed Coding Level *</label>
+                <select id="experienceLevel" name="experienceLevel" class="form-select" required>
+                  <option value="beginner">Beginner (Basic Python/C++, building first projects)</option>
+                  <option value="intermediate" selected>Intermediate (Comfortable with algorithms, APIs, full-stack tools)</option>
+                  <option value="advanced">Advanced (Built production apps, fine-tuned models, open-source maintainer)</option>
+                  <option value="expert">Expert (Kernel dev, distributed systems, competitive programming top rank)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="primaryLanguages">Primary Languages & Frameworks *</label>
+                <input type="text" id="primaryLanguages" name="primaryLanguages" class="form-input" required placeholder="e.g. Python, Rust, TypeScript, PyTorch, CUDA, Go">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="bestProjectUrl">Best Project / Repository Link</label>
+                <input type="url" id="bestProjectUrl" name="bestProjectUrl" class="form-input" placeholder="https://github.com/yourhandle/your-best-ai-project">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="bestProjectDescription">Describe What You Built in this Project & The Hardest Bug You Solved</label>
+                <textarea id="bestProjectDescription" name="bestProjectDescription" class="form-textarea" placeholder="Explain the system architecture, design decisions, and what you learned..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="hackathonsAttended">Number of Hackathons or Contests Participated In</label>
+                <input type="number" id="hackathonsAttended" name="hackathonsAttended" class="form-input" min="0" max="100" value="1">
+              </div>
+
+              <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+                <button type="button" class="btn btn-outline btn-prev-step">← Back</button>
+                <button type="button" class="btn btn-primary btn-next-step">Proceed to Vision Challenge →</button>
+              </div>
+            </div>
+
+            <!-- STEP 4: ESSAY & VISION CHALLENGE -->
+            <div class="step-panel" data-step="4">
+              <h3 style="margin-bottom: 1.5rem; color: var(--neon-cyan);">Step 4: The 10,000 H100 GPU Hours Vision Challenge</h3>
+
+              <div class="form-group">
+                <label class="form-label" for="visionEssay">Prompt 1: What will you train or build if given 10,000 NVIDIA H100 compute hours at Nexus? *</label>
+                <textarea id="visionEssay" name="visionEssay" class="form-textarea" required placeholder="Describe your speculative architecture, training dataset, reinforcement loop, or autonomous platform..." style="min-height: 140px;"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="whyNexus">Prompt 2: Why Nexus Institute of Technology over conventional rote universities? *</label>
+                <textarea id="whyNexus" name="whyNexus" class="form-textarea" required placeholder="What drives you to learn via production systems, open-source building, and Silicon Valley mentorship?" style="min-height: 120px;"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="fundingPreference">Preferred Tuition & Financing Model *</label>
+                <select id="fundingPreference" name="fundingPreference" class="form-select" required>
+                  <option value="income_share_agreement" selected>Income Share Agreement (ISA) - ₹0 Upfront</option>
+                  <option value="merit_fellowship">100% Merit Fellowship Application (Top 5% Review)</option>
+                  <option value="self_funded">Direct Semester Tuition (Self / Sponsored)</option>
+                </select>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; margin-top: 2.5rem;">
+                <button type="button" class="btn btn-outline btn-prev-step">← Back</button>
+                <button type="submit" class="btn btn-primary btn-lg">⚡ Transmit Application Dossier</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/ai-assistant') %>
+  <%- include('../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

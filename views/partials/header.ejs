@@ -1,0 +1,47 @@
+<header class="navbar">
+  <div class="container nav-container">
+    <a href="/" class="nav-brand">
+      <div class="brand-icon">⚡</div>
+      <div>NEXUS<span class="highlight">.TECH</span></div>
+    </a>
+
+    <nav class="nav-links" id="nav-links">
+      <a href="/programs" class="nav-link <%= currentPath === '/programs' ? 'active' : '' %>">Programs</a>
+      <a href="/curriculum" class="nav-link <%= currentPath === '/curriculum' ? 'active' : '' %>">Curriculum</a>
+      <a href="/mentors" class="nav-link <%= currentPath === '/mentors' ? 'active' : '' %>">Faculty & Mentors</a>
+      <a href="/hackerhouse" class="nav-link <%= currentPath === '/hackerhouse' ? 'active' : '' %>">Hackerhouse</a>
+      <a href="/launchpad" class="nav-link <%= currentPath.startsWith('/launchpad') ? 'active' : '' %>">Launchpad</a>
+      <a href="/hackathons" class="nav-link <%= currentPath.startsWith('/hackathons') ? 'active' : '' %>">Hackathons</a>
+      <a href="/tuition" class="nav-link <%= currentPath === '/tuition' ? 'active' : '' %>">Tuition & ISA</a>
+    </nav>
+
+    <div class="nav-actions">
+      <div class="nav-status-badge">
+        <span class="status-dot"></span>
+        <span>H100 PODS ACTIVE</span>
+      </div>
+
+      <% if (currentUser) { %>
+        <% if (currentUser.role === 'admin') { %>
+          <a href="/admin" class="btn btn-sm btn-purple">
+            <span>🛡️ Command Center</span>
+          </a>
+        <% } %>
+        <a href="/dashboard" class="nav-user-dropdown">
+          <img src="<%= currentUser.avatar %>" alt="<%= currentUser.name %>" class="nav-user-avatar">
+          <span class="nav-user-name"><%= currentUser.name.split(' ')[0] %></span>
+        </a>
+        <a href="/auth/logout" class="btn btn-sm btn-outline" title="Sign Out">
+          <span>Exit</span>
+        </a>
+      <% } else { %>
+        <a href="/auth/login" class="btn btn-sm btn-outline">Sign In</a>
+        <a href="/apply" class="btn btn-sm btn-primary">Apply Now</a>
+      <% } %>
+
+      <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <canvas id="cyber-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+
+  <%- include('../../partials/header') %>
+  <%- include('../../partials/flash') %>
+
+  <main class="main-content">
+    <section class="section" style="padding-top: 3.5rem;">
+      <div class="container">
+        <!-- COMMAND CENTER HEADER -->
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2.5rem;">
+          <div>
+            <div class="section-badge" style="border-color: var(--neon-purple); color: #d8b4fe;">ADMIN CLEARANCE LEVEL 0</div>
+            <h1 style="font-size: 2.2rem; margin-bottom: 0.25rem;">
+              Admissions <span class="gradient-text">Command Center</span>
+            </h1>
+            <p style="font-size: 0.95rem; color: var(--text-secondary);">
+              Review applicant codebases, evaluate essays, issue offers, and monitor admissions pipeline metrics.
+            </p>
+          </div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="/admin/content" class="btn btn-secondary">
+              <span>⚙️ Manage Content & Faculty</span>
+            </a>
+            <a href="/launchpad" class="btn btn-outline">
+              <span>View Live Platform</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- STATS HUD GRID -->
+        <div class="admin-stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">📄</div>
+            <div>
+              <div class="stat-value"><%= stats.totalApplications %></div>
+              <div style="font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase;">Total Dossiers</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" style="color: var(--neon-emerald); border-color: var(--neon-emerald);">⚡</div>
+            <div>
+              <div class="stat-value" style="color: var(--neon-emerald);"><%= stats.acceptedCount %></div>
+              <div style="font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase;">Offers Extended</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" style="color: var(--neon-amber); border-color: var(--neon-amber);">⏳</div>
+            <div>
+              <div class="stat-value" style="color: var(--neon-amber);"><%= stats.underReviewCount %></div>
+              <div style="font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase;">Pending Review</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" style="color: #d8b4fe; border-color: var(--neon-purple);">🎯</div>
+            <div>
+              <div class="stat-value" style="color: #d8b4fe;"><%= stats.acceptanceRate %>%</div>
+              <div style="font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase;">Selectivity Rate</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- APPLICATIONS FILTER & QUEUE -->
+        <div class="cyber-card" style="padding: 2rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+            <h3 style="font-size: 1.3rem;">Admissions Pipeline Queue (<%= applications.length %>)</h3>
+
+            <!-- FILTER CONTROLS -->
+            <form action="/admin" method="GET" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <select name="track" class="form-select" style="padding: 0.45rem 0.8rem; font-size: 0.85rem;" onchange="this.form.submit()">
+                <option value="">All Tracks</option>
+                <option value="btech-ai-cs" <%= selectedTrack === 'btech-ai-cs' ? 'selected' : '' %>>B.Tech AI & CS</option>
+                <option value="btech-autonomous-systems" <%= selectedTrack === 'btech-autonomous-systems' ? 'selected' : '' %>>B.Tech Robotics</option>
+                <option value="founder-fellowship" <%= selectedTrack === 'founder-fellowship' ? 'selected' : '' %>>Founder Fellowship</option>
+              </select>
+
+              <select name="status" class="form-select" style="padding: 0.45rem 0.8rem; font-size: 0.85rem;" onchange="this.form.submit()">
+                <option value="">All Statuses</option>
+                <option value="submitted" <%= selectedStatus === 'submitted' ? 'selected' : '' %>>Submitted</option>
+                <option value="under_review" <%= selectedStatus === 'under_review' ? 'selected' : '' %>>Under Review</option>
+                <option value="tech_assessment" <%= selectedStatus === 'tech_assessment' ? 'selected' : '' %>>Assessment</option>
+                <option value="interview_scheduled" <%= selectedStatus === 'interview_scheduled' ? 'selected' : '' %>>Interview</option>
+                <option value="accepted" <%= selectedStatus === 'accepted' ? 'selected' : '' %>>Accepted</option>
+                <option value="waitlisted" <%= selectedStatus === 'waitlisted' ? 'selected' : '' %>>Waitlisted</option>
+                <option value="rejected" <%= selectedStatus === 'rejected' ? 'selected' : '' %>>Rejected</option>
+              </select>
+
+              <% if (selectedTrack || selectedStatus) { %>
+                <a href="/admin" class="btn btn-sm btn-outline">Clear</a>
+              <% } %>
+            </form>
+          </div>
+
+          <!-- TABLE OF SUBMISSIONS -->
+          <div class="cyber-table-container">
+            <table class="cyber-table">
+              <thead>
+                <tr>
+                  <th>Dossier ID</th>
+                  <th>Applicant Name</th>
+                  <th>Track</th>
+                  <th>Experience</th>
+                  <th>Score</th>
+                  <th>Status</th>
+                  <th>Submitted</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if (applications && applications.length > 0) { %>
+                  <% applications.forEach(app => { %>
+                    <tr>
+                      <td style="font-family: var(--font-mono); color: var(--neon-cyan); font-weight: 700;">
+                        <%= app.applicationId %>
+                      </td>
+                      <td>
+                        <strong><%= app.personalDetails.fullName %></strong>
+                        <div style="font-size: 0.78rem; color: var(--text-muted);"><%= app.personalDetails.email %></div>
+                      </td>
+                      <td style="font-size: 0.85rem; text-transform: uppercase;">
+                        <%= app.track.replace(/-/g, ' ') %>
+                      </td>
+                      <td>
+                        <span class="module-pill"><%= app.technicalExperience.experienceLevel %></span>
+                      </td>
+                      <td style="font-family: var(--font-mono); font-weight: 700; color: <%= app.reviewerScore >= 80 ? 'var(--neon-emerald)' : '#fff' %>;">
+                        <%= app.reviewerScore > 0 ? `${app.reviewerScore}/100` : '—' %>
+                      </td>
+                      <td>
+                        <span class="status-badge status-<%= app.status %>">
+                          <%= app.status.replace('_', ' ') %>
+                        </span>
+                      </td>
+                      <td style="font-size: 0.85rem; color: var(--text-muted);">
+                        <%= new Date(app.createdAt).toLocaleDateString() %>
+                      </td>
+                      <td>
+                        <a href="/admin/applications/<%= app._id %>" class="btn btn-sm btn-primary">
+                          Review Dossier →
+                        </a>
+                      </td>
+                    </tr>
+                  <% }) %>
+                <% } else { %>
+                  <tr>
+                    <td colspan="8" style="text-align: center; padding: 2.5rem; color: var(--text-muted);">
+                      No applications match the current filter criteria.
+                    </td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../../partials/ai-assistant') %>
+  <%- include('../../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

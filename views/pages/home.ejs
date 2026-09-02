@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+  <!-- Neural Particle Canvas -->
+  <canvas id="cyber-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+
+  <!-- Header Partial -->
+  <%- include('../partials/header') %>
+
+  <!-- Flash Messages -->
+  <%- include('../partials/flash') %>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-tag">
+              <span class="status-dot"></span>
+              <span>BATCH 2026-2030 ADMISSIONS OPEN</span>
+            </div>
+            <h1 class="hero-title">
+              The Silicon Campus for <span class="gradient-text">AI Builders & Founders</span>.
+            </h1>
+            <p class="hero-description">
+              Nexus Institute of Technology replaces outdated legacy degrees with 100% production-grade systems engineering, 1:1 mentorship from OpenAI & Google DeepMind engineers, and 128x NVIDIA H100 supercompute clusters.
+            </p>
+            <div class="hero-actions">
+              <a href="/apply" class="btn btn-primary btn-lg">
+                <span>⚡ Apply for Admissions</span>
+              </a>
+              <a href="/curriculum" class="btn btn-secondary btn-lg">
+                <span>Explore AI Curriculum</span>
+              </a>
+            </div>
+
+            <div class="hero-metrics-strip">
+              <div class="metric-item">
+                <div class="metric-number">128x</div>
+                <div class="metric-label">NVIDIA H100 SXM5 GPUs</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-number">100%</div>
+                <div class="metric-label">Production Building</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-number">₹32L+</div>
+                <div class="metric-label">Avg Graduate Compensation</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- INTERACTIVE CYBER TERMINAL -->
+          <div class="hero-terminal-wrapper">
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <div class="terminal-dots">
+                  <div class="terminal-dot dot-red"></div>
+                  <div class="terminal-dot dot-yellow"></div>
+                  <div class="terminal-dot dot-green"></div>
+                </div>
+                <div class="terminal-title">nexus-core-terminal :: bash v5.2</div>
+                <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--neon-emerald);">LIVE</div>
+              </div>
+
+              <div class="terminal-body" id="terminal-cli-body">
+                <div class="terminal-line"><span class="terminal-prompt">nexus@guest:~$</span> system-init --neural-cluster</div>
+                <div class="terminal-line terminal-output">⚡ Nexus Neural Grid v4.2 Online.
+Cluster: 128x NVIDIA H100 (3.2 Tbps InfiniBand)
+Type <span style="color: var(--neon-cyan); font-weight: bold;">help</span> or click command chips below to inspect programs, mentors, specs, and curriculum.</div>
+              </div>
+
+              <div class="terminal-chips">
+                <span class="chip-label">Quick Execute:</span>
+                <button type="button" class="cmd-chip" data-cmd="tracks">tracks</button>
+                <button type="button" class="cmd-chip" data-cmd="curriculum">curriculum</button>
+                <button type="button" class="cmd-chip" data-cmd="mentors">mentors</button>
+                <button type="button" class="cmd-chip" data-cmd="specs">specs</button>
+                <button type="button" class="cmd-chip" data-cmd="hackathons">hackathons</button>
+                <button type="button" class="cmd-chip" data-cmd="apply">apply</button>
+              </div>
+
+              <div style="padding: 0.75rem 1rem; background: #040711; border-top: 1px solid var(--border-glass); display: flex; align-items: center; gap: 0.5rem;">
+                <span class="terminal-prompt">nexus@guest:~$</span>
+                <input type="text" id="terminal-cli-input" class="terminal-input" placeholder="Type a command (e.g. 'curriculum', 'specs', 'apply') and press Enter..." autofocus>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY NEXUS: THE NEXT-GEN ADVANTAGE -->
+    <section class="section" style="background: rgba(8, 13, 30, 0.5);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">⚡ THE PEDAGOGICAL PARADIGM SHIFT</div>
+          <h2 class="section-title">Built for the Age of <span class="gradient-text">Autonomous Intelligence</span></h2>
+          <p class="section-desc">Traditional universities teach 20-year-old theory. At Nexus, you ship real products and train multi-agent AI loops from your first month.</p>
+        </div>
+
+        <div class="tracks-grid">
+          <div class="cyber-card">
+            <div class="track-icon">🧠</div>
+            <h3>AI-First Pedagogy</h3>
+            <p>Master multi-agent orchestration, custom Triton kernels, reinforcement learning with human feedback (RLHF), and high-throughput inference engines.</p>
+            <ul class="track-highlights" style="margin-top: 1.25rem;">
+              <li>Zero outdated rote memorization exams</li>
+              <li>100% graded by production deployments & PRs</li>
+              <li>Pre-train real transformer models on dedicated silicon</li>
+            </ul>
+          </div>
+
+          <div class="cyber-card cyber-card-glow-purple">
+            <div class="track-icon" style="background: rgba(157, 78, 221, 0.1); border-color: var(--neon-purple);">⚡</div>
+            <h3>128x NVIDIA H100 Pods</h3>
+            <p>Every student receives a 120-hour monthly allocation on our local supercompute cluster connected via 3.2 Tbps InfiniBand.</p>
+            <ul class="track-highlights" style="margin-top: 1.25rem;">
+              <li>Dedicated multi-node distributed training</li>
+              <li>2.5 PB high-speed NVMe storage cluster</li>
+              <li>Robotics simulation & spatial vision pipelines</li>
+            </ul>
+          </div>
+
+          <div class="cyber-card cyber-card-glow-emerald">
+            <div class="track-icon" style="background: rgba(0, 255, 157, 0.1); border-color: var(--neon-emerald);">🚀</div>
+            <h3>Silicon Valley Mentorship</h3>
+            <p>Weekly 1:1 code reviews, architectural whiteboarding, and capstone funding directly from staff engineers at OpenAI, DeepMind, Stripe, and YC partners.</p>
+            <ul class="track-highlights" style="margin-top: 1.25rem;">
+              <li>Direct hiring pipelines to tier-1 AI labs</li>
+              <li>$100,000 venture grant pool for student startups</li>
+              <li>Semester-long Silicon Valley & Bangalore residency</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACADEMIC & VENTURE TRACKS -->
+    <section class="section" id="tracks">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">PROGRAM TRACKS</div>
+          <h2 class="section-title">Select Your <span class="gradient-text">Specialization Vector</span></h2>
+          <p class="section-desc">Engineered for future AI researchers, distributed systems architects, and startup founders.</p>
+        </div>
+
+        <div class="tracks-grid">
+          <!-- TRACK 1 -->
+          <div class="cyber-card track-card">
+            <div>
+              <div class="track-icon">🤖</div>
+              <h3 class="track-title">B.Tech in Artificial Intelligence & CS</h3>
+              <div class="track-meta">
+                <span>⏱ 4 Years Immersive</span>
+                <span>•</span>
+                <span>🎓 Full B.Tech Degree</span>
+              </div>
+              <p>Deep dive into foundation models, agentic reasoning, custom tokenizers, PyTorch/CUDA acceleration, and large-scale vector search systems.</p>
+            </div>
+            <ul class="track-highlights">
+              <li>Transformer Architecture & Attention Mechanisms</li>
+              <li>Autonomous Multi-Agent Swarms & Tool Use</li>
+              <li>Distributed Model Sharding & Low-Rank Adaptation (LoRA)</li>
+              <li>1:1 OpenAI & DeepMind Research Mentorship</li>
+            </ul>
+            <a href="/apply?track=btech-ai-cs" class="btn btn-primary btn-block">Apply for AI & CS Track</a>
+          </div>
+
+          <!-- TRACK 2 -->
+          <div class="cyber-card track-card cyber-card-glow-emerald">
+            <div>
+              <div class="track-icon" style="border-color: var(--neon-emerald); background: rgba(0, 255, 157, 0.1);">🛰️</div>
+              <h3 class="track-title">B.Tech in Autonomous Systems & Robotics</h3>
+              <div class="track-meta" style="color: var(--neon-emerald);">
+                <span>⏱ 4 Years Immersive</span>
+                <span>•</span>
+                <span>🎓 Full B.Tech Degree</span>
+              </div>
+              <p>Design spatial intelligence, SLAM mapping, humanoid kinematics, embedded Rust, and real-time computer vision pipelines for autonomous machines.</p>
+            </div>
+            <ul class="track-highlights">
+              <li>Spatial Computing & 3D Gaussian Splatting</li>
+              <li>ROS2, Embedded Microkernels & Real-time Linux</li>
+              <li>Drone Swarm Coordination & Sensor Fusion</li>
+              <li>Full Maker Lab & CNC Rapid Prototyping Access</li>
+            </ul>
+            <a href="/apply?track=btech-autonomous-systems" class="btn btn-emerald btn-block">Apply for Robotics Track</a>
+          </div>
+
+          <!-- TRACK 3 -->
+          <div class="cyber-card track-card cyber-card-glow-purple">
+            <div>
+              <div class="track-icon" style="border-color: var(--neon-purple); background: rgba(157, 78, 221, 0.1);">💡</div>
+              <h3 class="track-title">Founder Fellowship & Venture Track</h3>
+              <div class="track-meta" style="color: var(--neon-purple);">
+                <span>⏱ 1 Year Residency</span>
+                <span>•</span>
+                <span>🚀 $100k Grant Pool</span>
+              </div>
+              <p>For exceptional builders ready to build venture-scale companies. 0% equity grants, 24/7 Hackerhouse residency, and direct Demo Day with Silicon Valley VCs.</p>
+            </div>
+            <ul class="track-highlights">
+              <li>Full Hackerhouse Housing & 24/7 Supercompute</li>
+              <li>Direct Term Sheet Negotiations & Pitch Coaching</li>
+              <li>Access to 50+ Top Tier Angel Investors & Founders</li>
+              <li>Fast-track Y Combinator & Nexus Capital network</li>
+            </ul>
+            <a href="/apply?track=founder-fellowship" class="btn btn-purple btn-block">Apply for Founder Fellowship</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDUSTRY MENTORS SPOTLIGHT -->
+    <section class="section" style="background: rgba(4, 7, 17, 0.7);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">FACULTY & MENTORS</div>
+          <h2 class="section-title">Learn Directly from <span class="gradient-text">World-Class Engineers</span></h2>
+          <p class="section-desc">Our faculty aren't full-time lecturers who haven't written code in decades. They are staff engineers and researchers building frontier systems daily.</p>
+        </div>
+
+        <div class="mentors-grid">
+          <% mentors.forEach(mentor => { %>
+            <div class="cyber-card mentor-card">
+              <div class="mentor-header">
+                <img src="<%= mentor.avatarUrl %>" alt="<%= mentor.name %>" class="mentor-avatar">
+                <div>
+                  <h4 class="mentor-name"><%= mentor.name %></h4>
+                  <div class="mentor-role"><%= mentor.role %></div>
+                  <div class="mentor-company"><%= mentor.company %></div>
+                </div>
+              </div>
+              <p style="font-size: 0.92rem; margin-bottom: 1rem;"><%= mentor.bio %></p>
+              <div class="mentor-expertise-tags">
+                <% mentor.expertise.forEach(exp => { %>
+                  <span class="module-pill"><%= exp %></span>
+                <% }) %>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+          <a href="/mentors" class="btn btn-secondary">View All 20+ Mentors & Research Advisors →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- STUDENT PROJECT LAUNCHPAD SPOTLIGHT -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">STUDENT LAUNCHPAD</div>
+          <h2 class="section-title">Shipped by <span class="gradient-text">Nexus Builders</span></h2>
+          <p class="section-desc">Real apps, open-source engines, and funded startups built during semesters.</p>
+        </div>
+
+        <div class="projects-grid">
+          <% projects.forEach(project => { %>
+            <div class="cyber-card project-card">
+              <div>
+                <img src="<%= project.imageUrl %>" alt="<%= project.title %>" class="project-img">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                  <h4 style="color: #fff;"><%= project.title %></h4>
+                  <span class="status-badge status-accepted" style="font-size: 0.7rem;"><%= project.badge %></span>
+                </div>
+                <p style="font-size: 0.92rem; margin-bottom: 1.2rem;"><%= project.tagline %></p>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.25rem;">
+                  <% project.tags.forEach(tag => { %>
+                    <span class="module-pill"><%= tag %></span>
+                  <% }) %>
+                </div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-glass); padding-top: 1rem;">
+                <div style="font-size: 0.85rem; color: var(--text-muted);">
+                  By <strong style="color: #fff;"><%= project.creatorName %></strong>
+                </div>
+                <button type="button" class="project-upvote-btn" data-id="<%= project._id %>">
+                  <span>▲</span>
+                  <span class="upvote-count"><%= project.upvotes %></span>
+                </button>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+          <a href="/launchpad" class="btn btn-secondary">Explore All Projects on Launchpad →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE HACKATHONS STRIP -->
+    <% if (hackathons && hackathons.length > 0) { %>
+      <section class="section" style="background: rgba(12, 18, 42, 0.6); border-top: 1px solid var(--border-glass); border-bottom: 1px solid var(--border-glass);">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-badge" style="border-color: var(--neon-rose); color: var(--neon-rose);">LIVE BOUNTY SPRINTS</div>
+            <h2 class="section-title">Nexus Cyber <span class="gradient-text">Hackathon Arena</span></h2>
+            <p class="section-desc">Compete with top builders globally, win cash prizes, and secure fellowship spots.</p>
+          </div>
+
+          <div class="hackathons-grid">
+            <% hackathons.forEach(hack => { %>
+              <div class="cyber-card hackathon-card">
+                <img src="<%= hack.bannerImage %>" alt="<%= hack.title %>" class="hackathon-banner">
+                <div class="section-badge" style="margin-bottom: 0.75rem; align-self: flex-start;"><%= hack.theme %></div>
+                <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;"><%= hack.title %></h3>
+                <p style="font-size: 0.9rem; margin-bottom: 1rem;"><%= hack.tagline %></p>
+                <div style="font-family: var(--font-mono); font-size: 1.05rem; font-weight: 700; color: var(--neon-emerald); margin-bottom: 0.75rem;">
+                  💰 Prize: <%= hack.prizePool %>
+                </div>
+
+                <!-- LIVE COUNTDOWN CLOCK -->
+                <div class="hackathon-countdown" data-end="<%= hack.endDate.toISOString() %>">
+                  <div class="countdown-box">
+                    <div class="countdown-num c-days">00</div>
+                    <div class="countdown-label">Days</div>
+                  </div>
+                  <div class="countdown-box">
+                    <div class="countdown-num c-hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                  </div>
+                  <div class="countdown-box">
+                    <div class="countdown-num c-mins">00</div>
+                    <div class="countdown-label">Mins</div>
+                  </div>
+                  <div class="countdown-box">
+                    <div class="countdown-num c-secs">00</div>
+                    <div class="countdown-label">Secs</div>
+                  </div>
+                </div>
+
+                <div style="margin-top: auto; padding-top: 1rem;">
+                  <a href="/hackathons/<%= hack.slug %>" class="btn btn-primary btn-block">Enter Arena & Register</a>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        </div>
+      </section>
+    <% } %>
+
+    <!-- ADMISSIONS CALL TO ACTION -->
+    <section class="section">
+      <div class="container">
+        <div class="cyber-card" style="background: linear-gradient(135deg, rgba(8, 14, 35, 0.9) 0%, rgba(20, 28, 65, 0.9) 100%); border: 2px solid var(--border-cyan); text-align: center; padding: 4.5rem 2rem;">
+          <div class="section-badge" style="margin-bottom: 1.5rem;">COHORT 2026-2030</div>
+          <h2 style="font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 1.25rem;">
+            Ready to Build the <span class="gradient-text">Future of Computing</span>?
+          </h2>
+          <p style="max-width: 650px; margin: 0 auto 2.5rem auto; font-size: 1.15rem;">
+            Join a selective cohort of brilliant hackers and AI architects. Zero tuition upfront option available with our Income Share Agreement (ISA).
+          </p>
+          <div style="display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap;">
+            <a href="/apply" class="btn btn-primary btn-lg">⚡ Begin Application Dossier</a>
+            <a href="/tuition" class="btn btn-secondary btn-lg">Calculate ISA Terms</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- AI Assistant Drawer Partial -->
+  <%- include('../partials/ai-assistant') %>
+
+  <!-- Footer Partial -->
+  <%- include('../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

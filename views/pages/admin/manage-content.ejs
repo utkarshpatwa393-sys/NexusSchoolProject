@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <canvas id="cyber-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+
+  <%- include('../../partials/header') %>
+  <%- include('../../partials/flash') %>
+
+  <main class="main-content">
+    <section class="section" style="padding-top: 3.5rem;">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+          <div>
+            <div class="section-badge" style="border-color: var(--neon-purple); color: #d8b4fe;">CONTENT & FACULTY COMMAND</div>
+            <h1 style="font-size: 2rem;">Manage Platform Ecosystem</h1>
+          </div>
+          <a href="/admin" class="btn btn-outline">← Back to Admissions Queue</a>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start;">
+          <!-- ADD NEW FACULTY MENTOR -->
+          <div class="cyber-card" style="padding: 2rem;">
+            <h3 style="color: var(--neon-cyan); margin-bottom: 1.5rem;">+ Add Industry Mentor / Advisor</h3>
+            
+            <form action="/admin/mentors/new" method="POST">
+              <div class="form-group">
+                <label class="form-label" for="name">Mentor Full Name *</label>
+                <input type="text" id="name" name="name" class="form-input" required placeholder="e.g. Dr. Elena Rostova">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="role">Engineering Role *</label>
+                <input type="text" id="role" name="role" class="form-input" required placeholder="e.g. Staff AI Systems Architect">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="company">Company / Lab *</label>
+                <input type="text" id="company" name="company" class="form-input" required placeholder="e.g. OpenAI / Google DeepMind / Anthropic">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="domain">Domain / Field *</label>
+                <select id="domain" name="domain" class="form-select" required>
+                  <option value="AI & LLMs">AI & LLMs</option>
+                  <option value="Distributed Systems">Distributed Systems</option>
+                  <option value="Founders & VC">Founders & VC</option>
+                  <option value="Robotics & Hardware">Robotics & Hardware</option>
+                  <option value="Fintech & Web3">Fintech & Web3</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="expertise">Expertise Tags (Comma-separated)</label>
+                <input type="text" id="expertise" name="expertise" class="form-input" placeholder="CUDA, FlashAttention, PyTorch, LoRA">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="bio">Bio & Focus Area *</label>
+                <textarea id="bio" name="bio" class="form-textarea" required placeholder="Mentoring students in custom transformer kernels and agent loops..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="avatarUrl">Avatar URL</label>
+                <input type="url" id="avatarUrl" name="avatarUrl" class="form-input" placeholder="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80">
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Publish Faculty Profile</button>
+            </form>
+          </div>
+
+          <!-- CREATE NEW HACKATHON -->
+          <div class="cyber-card cyber-card-glow-purple" style="padding: 2rem;">
+            <h3 style="color: #d8b4fe; margin-bottom: 1.5rem;">+ Launch New Hackathon Challenge</h3>
+
+            <form action="/admin/hackathons/new" method="POST">
+              <div class="form-group">
+                <label class="form-label" for="title">Hackathon Title *</label>
+                <input type="text" id="title" name="title" class="form-input" required placeholder="e.g. AGENT-X: Autonomous AI Sprints">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="tagline">Tagline *</label>
+                <input type="text" id="tagline" name="tagline" class="form-input" required placeholder="48-hour global sprint to build self-healing multi-agent software.">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="theme">Theme & Focus *</label>
+                <input type="text" id="theme" name="theme" class="form-input" required placeholder="Agentic AI, Reasoning Loops & Tool Use">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="prizePool">Prize Pool *</label>
+                <input type="text" id="prizePool" name="prizePool" class="form-input" required placeholder="$50,000 Cash + 20,000 H100 GPU Hours">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="tags">Tags (Comma-separated)</label>
+                <input type="text" id="tags" name="tags" class="form-input" placeholder="AI Agents, Python, PyTorch, Multi-Agent">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="description">Full Description & Challenges *</label>
+                <textarea id="description" name="description" class="form-textarea" required placeholder="Detailed guidelines, benchmarks, and submission expectations..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-purple btn-block">Launch Hackathon Arena</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../../partials/ai-assistant') %>
+  <%- include('../../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

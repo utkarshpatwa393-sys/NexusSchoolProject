@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <canvas id="cyber-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+
+  <%- include('../../partials/header') %>
+  <%- include('../../partials/flash') %>
+
+  <main class="main-content">
+    <section class="section" style="padding-top: 4rem;">
+      <div class="container" style="max-width: 680px;">
+        <div class="cyber-card" style="padding: 3rem 2.5rem; background: rgba(8, 14, 35, 0.9);">
+          <div style="margin-bottom: 2rem;">
+            <div class="section-badge">STUDENT LAUNCHPAD</div>
+            <h1 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Deploy Project to Launchpad</h1>
+            <p style="font-size: 0.92rem; color: var(--text-secondary);">Showcase your AI agent, robotics prototype, or open-source software to the world.</p>
+          </div>
+
+          <form action="/launchpad/new" method="POST">
+            <div class="form-group">
+              <label class="form-label" for="title">Project Title *</label>
+              <input type="text" id="title" name="title" class="form-input" required placeholder="e.g. AgentSwarm-OS">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="tagline">Short Tagline (Max 180 chars) *</label>
+              <input type="text" id="tagline" name="tagline" class="form-input" required maxlength="180" placeholder="e.g. Autonomous multi-agent coordination protocol in Rust">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="track">Category / Track *</label>
+              <select id="track" name="track" class="form-select" required>
+                <option value="AI Agents & LLMs">AI Agents & LLMs</option>
+                <option value="Robotics & Vision">Robotics & Vision</option>
+                <option value="Distributed Systems">Distributed Systems</option>
+                <option value="DevTools">DevTools</option>
+                <option value="Web3 & Fintech">Web3 & Fintech</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="tags">Tech Stack Tags (Comma separated)</label>
+              <input type="text" id="tags" name="tags" class="form-input" placeholder="Rust, PyTorch, CUDA, Claude API, WebAssembly">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="description">Detailed Project Architecture & Overview *</label>
+              <textarea id="description" name="description" class="form-textarea" required placeholder="Explain how the system functions, benchmarks achieved, and the motivation..."></textarea>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="demoUrl">Live Demo URL</label>
+                <input type="url" id="demoUrl" name="demoUrl" class="form-input" placeholder="https://demo.nexus.edu">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="githubUrl">GitHub Repository URL</label>
+                <input type="url" id="githubUrl" name="githubUrl" class="form-input" placeholder="https://github.com/org/repo">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="imageUrl">Preview Banner Image URL</label>
+              <input type="url" id="imageUrl" name="imageUrl" class="form-input" placeholder="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80">
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+              <a href="/launchpad" class="btn btn-outline">Cancel</a>
+              <button type="submit" class="btn btn-primary btn-lg">🚀 Publish to Launchpad</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../../partials/ai-assistant') %>
+  <%- include('../../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

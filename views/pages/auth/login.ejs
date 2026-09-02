@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <canvas id="cyber-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+
+  <%- include('../../partials/header') %>
+  <%- include('../../partials/flash') %>
+
+  <main class="main-content">
+    <section class="section" style="padding-top: 5rem; min-height: 80vh; display: flex; align-items: center;">
+      <div class="container" style="max-width: 520px;">
+        <div class="cyber-card" style="padding: 3rem 2.5rem; background: rgba(8, 14, 35, 0.9);">
+          <div style="text-align: center; margin-bottom: 2rem;">
+            <div class="brand-icon" style="margin: 0 auto 1rem auto; width: 44px; height: 44px; font-size: 1.4rem;">⚡</div>
+            <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Nexus Terminal Access</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">Authenticate your neural developer identity</p>
+          </div>
+
+          <form action="/auth/login" method="POST">
+            <input type="hidden" name="redirectUrl" value="<%= redirectUrl %>">
+
+            <div class="form-group">
+              <label class="form-label" for="email">Neural Email / Signature</label>
+              <input type="email" id="email" name="email" class="form-input" required placeholder="alex@nexus.edu">
+            </div>
+
+            <div class="form-group">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                <label class="form-label" for="password" style="margin-bottom: 0;">Passcode</label>
+              </div>
+              <input type="password" id="password" name="password" class="form-input" required placeholder="••••••••••••">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 1rem;">
+              <span>⚡ Authenticate & Enter</span>
+            </button>
+          </form>
+
+          <!-- QUICK DEMO ACCESS PANEL (CONVENIENCE FOR USER) -->
+          <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-glass);">
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-bottom: 0.8rem; text-transform: uppercase;">
+              ⚡ Quick Demo 1-Click Access:
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+              <form action="/auth/quick-demo" method="POST">
+                <input type="hidden" name="role" value="admin">
+                <button type="submit" class="btn btn-sm btn-purple btn-block">🛡️ Admin Demo</button>
+              </form>
+              <form action="/auth/quick-demo" method="POST">
+                <input type="hidden" name="role" value="student">
+                <button type="submit" class="btn btn-sm btn-secondary btn-block">👨‍💻 Student Demo</button>
+              </form>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 1.5rem; font-size: 0.88rem; color: var(--text-muted);">
+            Don't have a Nexus ID? <a href="/auth/register" style="color: var(--neon-cyan); font-weight: 600;">Create Identity</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../../partials/ai-assistant') %>
+  <%- include('../../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

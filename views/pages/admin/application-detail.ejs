@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <canvas id="cyber-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+
+  <%- include('../../partials/header') %>
+  <%- include('../../partials/flash') %>
+
+  <main class="main-content">
+    <section class="section" style="padding-top: 3.5rem;">
+      <div class="container" style="max-width: 1080px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+          <a href="/admin" class="btn btn-sm btn-outline">← Back to Command Center</a>
+          <span class="status-badge status-<%= application.status %>" style="font-size: 0.9rem; padding: 0.4rem 1.2rem;">
+            ● <%= application.status.replace('_', ' ').toUpperCase() %>
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.8fr 1fr; gap: 2.5rem; align-items: start;">
+          <!-- LEFT COLUMN: FULL DOSSIER CONTENT -->
+          <div>
+            <!-- APPLICANT HEADER -->
+            <div class="cyber-card" style="padding: 2rem; margin-bottom: 2rem;">
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--neon-cyan);">DOSSIER ID: <%= application.applicationId %></div>
+              <h1 style="font-size: 2rem; margin: 0.25rem 0;"><%= application.personalDetails.fullName %></h1>
+              
+              <div style="display: flex; flex-wrap: wrap; gap: 1.2rem; font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.75rem;">
+                <span>📧 <%= application.personalDetails.email %></span>
+                <span>📱 <%= application.personalDetails.phone %></span>
+                <span>📍 <%= application.personalDetails.city %>, <%= application.personalDetails.country %></span>
+              </div>
+
+              <div style="display: flex; gap: 0.75rem; margin-top: 1.25rem;">
+                <% if (application.personalDetails.githubUrl) { %>
+                  <a href="<%= application.personalDetails.githubUrl %>" target="_blank" class="btn btn-sm btn-outline">GitHub Profile ↗</a>
+                <% } %>
+                <% if (application.personalDetails.portfolioUrl) { %>
+                  <a href="<%= application.personalDetails.portfolioUrl %>" target="_blank" class="btn btn-sm btn-outline">Portfolio ↗</a>
+                <% } %>
+                <% if (application.personalDetails.linkedinUrl) { %>
+                  <a href="<%= application.personalDetails.linkedinUrl %>" target="_blank" class="btn btn-sm btn-outline">LinkedIn / X ↗</a>
+                <% } %>
+              </div>
+            </div>
+
+            <!-- ACADEMIC & TECHNICAL BACKGROUND -->
+            <div class="cyber-card" style="padding: 2rem; margin-bottom: 2rem;">
+              <h3 style="color: var(--neon-cyan); margin-bottom: 1.25rem;">Academic & Coding Background</h3>
+              
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem;">
+                <div>
+                  <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">PROGRAM TRACK</div>
+                  <div style="font-weight: 700; color: #fff; text-transform: uppercase;"><%= application.track.replace(/-/g, ' ') %></div>
+                </div>
+                <div>
+                  <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">EDUCATION</div>
+                  <div style="font-weight: 600; color: #fff;"><%= application.academicBackground.highestEducation %></div>
+                </div>
+                <div>
+                  <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">SCHOOL / INSTITUTION</div>
+                  <div style="color: var(--text-secondary);"><%= application.academicBackground.schoolOrCollege %> (Class of <%= application.academicBackground.graduationYear %>)</div>
+                </div>
+                <div>
+                  <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">GPA / TEST SCORES</div>
+                  <div style="color: var(--text-secondary);"><%= application.academicBackground.gpaOrPercentage %> <%= application.academicBackground.standardizedTestScore ? `• ${application.academicBackground.standardizedTestScore}` : '' %></div>
+                </div>
+              </div>
+
+              <div style="border-top: 1px solid var(--border-glass); padding-top: 1.25rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.4rem;">PRIMARY LANGUAGES & FRAMEWORKS</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem;">
+                  <% application.technicalExperience.primaryLanguages.forEach(lang => { %>
+                    <span class="module-pill" style="color: var(--neon-cyan);"><%= lang %></span>
+                  <% }) %>
+                </div>
+
+                <% if (application.technicalExperience.bestProjectUrl) { %>
+                  <div style="margin-bottom: 0.75rem;">
+                    <strong>Best Project Link:</strong> 
+                    <a href="<%= application.technicalExperience.bestProjectUrl %>" target="_blank" style="color: var(--neon-cyan); margin-left: 0.5rem;"><%= application.technicalExperience.bestProjectUrl %> ↗</a>
+                  </div>
+                <% } %>
+
+                <% if (application.technicalExperience.bestProjectDescription) { %>
+                  <p style="font-size: 0.9rem; background: rgba(4, 7, 17, 0.6); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-glass);"><%= application.technicalExperience.bestProjectDescription %></p>
+                <% } %>
+              </div>
+            </div>
+
+            <!-- ESSAY & VISION CHALLENGE -->
+            <div class="cyber-card" style="padding: 2rem;">
+              <h3 style="color: var(--neon-cyan); margin-bottom: 1.25rem;">Speculative Architecture & Vision</h3>
+
+              <div style="margin-bottom: 1.75rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--neon-emerald); margin-bottom: 0.35rem;">PROMPT 1: 10,000 H100 GPU HOURS SPECULATION</div>
+                <div style="background: rgba(4, 7, 17, 0.7); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.25rem; font-size: 0.95rem; line-height: 1.7;">
+                  <%= application.essayChallenge.visionEssay %>
+                </div>
+              </div>
+
+              <div>
+                <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--neon-cyan); margin-bottom: 0.35rem;">PROMPT 2: WHY NEXUS INSTITUTE OF TECHNOLOGY</div>
+                <div style="background: rgba(4, 7, 17, 0.7); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.25rem; font-size: 0.95rem; line-height: 1.7;">
+                  <%= application.essayChallenge.whyNexus %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: REVIEW SCORECARD & STATUS UPDATER -->
+          <div>
+            <div class="cyber-card" style="padding: 2rem; border-color: var(--border-cyan); position: sticky; top: 100px;">
+              <h3 style="color: #fff; font-size: 1.25rem; margin-bottom: 1.25rem;">Evaluation Scorecard</h3>
+
+              <form action="/admin/applications/<%= application._id %>/status" method="POST">
+                <div class="form-group">
+                  <label class="form-label" for="status">Admissions Status *</label>
+                  <select id="status" name="status" class="form-select" required>
+                    <option value="submitted" <%= application.status === 'submitted' ? 'selected' : '' %>>Submitted</option>
+                    <option value="under_review" <%= application.status === 'under_review' ? 'selected' : '' %>>Under Review</option>
+                    <option value="tech_assessment" <%= application.status === 'tech_assessment' ? 'selected' : '' %>>Cognitive Assessment Invited</option>
+                    <option value="interview_scheduled" <%= application.status === 'interview_scheduled' ? 'selected' : '' %>>Founder 1:1 Scheduled</option>
+                    <option value="accepted" <%= application.status === 'accepted' ? 'selected' : '' %>>Offer Extended (Accepted)</option>
+                    <option value="waitlisted" <%= application.status === 'waitlisted' ? 'selected' : '' %>>Priority Waitlist</option>
+                    <option value="rejected" <%= application.status === 'rejected' ? 'selected' : '' %>>Cycle Closed (Rejected)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="reviewerScore">Technical Score (0 - 100)</label>
+                  <input type="number" id="reviewerScore" name="reviewerScore" class="form-input" min="0" max="100" value="<%= application.reviewerScore || 0 %>">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="reviewerNote">Internal Reviewer Remarks</label>
+                  <textarea id="reviewerNote" name="reviewerNote" class="form-textarea" placeholder="Add confidential notes on candidate's code quality, essay depth, or interview performance..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                  <span>⚡ Save Decision & Update Dossier</span>
+                </button>
+              </form>
+
+              <!-- PAST NOTES AUDIT -->
+              <% if (application.reviewerNotes && application.reviewerNotes.length > 0) { %>
+                <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-glass);">
+                  <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem;">PAST COMMITTEE REMARKS:</div>
+                  <% application.reviewerNotes.forEach(n => { %>
+                    <div style="font-size: 0.82rem; margin-bottom: 0.5rem; color: #cbd5e1; background: rgba(0,0,0,0.3); padding: 0.5rem; border-radius: 4px;">
+                      "<%= n.note %>"
+                    </div>
+                  <% }) %>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../../partials/ai-assistant') %>
+  <%- include('../../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

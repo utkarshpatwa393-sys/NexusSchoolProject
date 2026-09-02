@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <canvas id="cyber-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+
+  <%- include('../partials/header') %>
+  <%- include('../partials/flash') %>
+
+  <main class="main-content">
+    <section class="section" style="padding-top: 4rem;">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">TRANSPARENT FINANCING & FELLOWSHIPS</div>
+          <h1 class="section-title">Zero Upfront Tuition with <span class="gradient-text">Income Share (ISA)</span></h1>
+          <p class="section-desc">
+            We invest in you first. Pay ₹0 upfront tuition. You only pay when you land a high-paying engineering role above ₹18,00,000 / $22,000 per year.
+          </p>
+        </div>
+
+        <!-- ISA SIMULATOR CALCULATOR -->
+        <div class="cyber-card" style="margin-bottom: 4rem; padding: 3rem; background: linear-gradient(135deg, rgba(8, 14, 35, 0.95) 0%, rgba(18, 26, 60, 0.95) 100%);">
+          <div style="text-align: center; margin-bottom: 2.5rem;">
+            <div class="section-badge" style="border-color: var(--neon-cyan); color: var(--neon-cyan);">INTERACTIVE SIMULATOR</div>
+            <h2>Nexus ISA Repayment Calculator</h2>
+            <p style="font-size: 0.95rem; color: var(--text-secondary);">Drag the slider to preview your monthly payment based on projected starting salary.</p>
+          </div>
+
+          <div style="max-width: 650px; margin: 0 auto;">
+            <div style="margin-bottom: 2rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                <label class="form-label" style="font-size: 1.05rem;">Projected Starting Annual Salary (LPA):</label>
+                <span id="isa-salary-val" style="font-family: var(--font-mono); font-size: 1.4rem; font-weight: 800; color: var(--neon-cyan);">₹32 LPA ($38,000)</span>
+              </div>
+              <input type="range" id="isa-salary-slider" min="10" max="80" step="1" value="32" style="width: 100%; accent-color: var(--neon-cyan); cursor: pointer; height: 8px; border-radius: 4px;">
+              <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-top: 0.4rem;">
+                <span>₹10 LPA</span>
+                <span>Threshold: ₹18 LPA</span>
+                <span>₹50 LPA</span>
+                <span>₹80 LPA</span>
+              </div>
+            </div>
+
+            <!-- RESULT HUD -->
+            <div style="background: rgba(4, 7, 17, 0.8); border: 1px solid var(--border-cyan); border-radius: var(--border-radius-md); padding: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; text-align: center;">
+              <div>
+                <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Monthly ISA Payment (36 Mos)</div>
+                <div id="isa-monthly-payment" style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: var(--neon-emerald); margin-top: 0.25rem;">
+                  ₹32,000 / month
+                </div>
+              </div>
+              <div>
+                <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Total Maximum Repayment</div>
+                <div id="isa-total-repayment" style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: #d8b4fe; margin-top: 0.25rem;">
+                  ₹11,52,000 (Max Capped)
+                </div>
+              </div>
+            </div>
+
+            <div id="isa-threshold-alert" style="display: none; margin-top: 1rem; padding: 0.75rem 1rem; border-radius: 8px; background: rgba(255, 0, 85, 0.15); border: 1px solid var(--neon-rose); color: #fecdd3; font-size: 0.85rem; text-align: center;">
+              🛡️ <strong>Safety Net Triggered:</strong> Under ₹18 LPA salary, you pay absolutely ₹0. Your payment is deferred until your income crosses the threshold.
+            </div>
+          </div>
+        </div>
+
+        <!-- TUITION MODELS BREAKDOWN -->
+        <div class="tracks-grid">
+          <!-- MODEL 1 -->
+          <div class="cyber-card">
+            <div class="section-badge" style="border-color: var(--neon-cyan); color: var(--neon-cyan);">OPTION 1</div>
+            <h3>Income Share Agreement (ISA)</h3>
+            <div style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: var(--neon-cyan); margin: 0.75rem 0;">₹0 Upfront</div>
+            <p style="font-size: 0.92rem; margin-bottom: 1.5rem;">Pay nothing while studying. Pay 12% of your monthly salary for 36 months only after you secure a tech role paying > ₹18 LPA. Capped at ₹15L max.</p>
+            <ul class="track-highlights">
+              <li>100% Alignment of incentives</li>
+              <li>Zero interest & transparent terms</li>
+              <li>Safety net for job transitions</li>
+            </ul>
+            <a href="/apply" class="btn btn-primary btn-block">Apply for ISA Track</a>
+          </div>
+
+          <!-- MODEL 2 -->
+          <div class="cyber-card cyber-card-glow-emerald">
+            <div class="section-badge" style="border-color: var(--neon-emerald); color: var(--neon-emerald);">OPTION 2</div>
+            <h3>Merit & Diversity Fellowships</h3>
+            <div style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: var(--neon-emerald); margin: 0.75rem 0;">100% Free Grant</div>
+            <p style="font-size: 0.92rem; margin-bottom: 1.5rem;">Awarded to the top 5% of applicants demonstrating exceptional open-source contributions, competitive programming rankings, or AI breakthroughs.</p>
+            <ul class="track-highlights">
+              <li>Zero upfront & zero ISA repayment</li>
+              <li>Sponsored by top tech venture funds</li>
+              <li>Includes monthly living stipend</li>
+            </ul>
+            <a href="/apply" class="btn btn-emerald btn-block">Apply for Fellowship</a>
+          </div>
+
+          <!-- MODEL 3 -->
+          <div class="cyber-card cyber-card-glow-purple">
+            <div class="section-badge" style="border-color: var(--neon-purple); color: #d8b4fe;">OPTION 3</div>
+            <h3>Direct Term Tuition</h3>
+            <div style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: #d8b4fe; margin: 0.75rem 0;">₹2,50,000 / Sem</div>
+            <p style="font-size: 0.92rem; margin-bottom: 1.5rem;">Standard upfront per-semester tuition covering full instruction, 120 hrs/mo H100 supercompute credits, and hackerhouse facilities.</p>
+            <ul class="track-highlights">
+              <li>No future income share obligation</li>
+              <li>0% interest EMI options available</li>
+              <li>Full hardware & compute access</li>
+            </ul>
+            <a href="/apply" class="btn btn-purple btn-block">Apply for Direct Track</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/ai-assistant') %>
+  <%- include('../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

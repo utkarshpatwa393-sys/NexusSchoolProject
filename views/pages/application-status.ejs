@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <canvas id="cyber-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+
+  <%- include('../partials/header') %>
+  <%- include('../partials/flash') %>
+
+  <main class="main-content">
+    <section class="section" style="padding-top: 4rem;">
+      <div class="container" style="max-width: 900px;">
+        <!-- DOSSIER HEADER -->
+        <div class="cyber-card" style="margin-bottom: 2.5rem; padding: 2.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; border-bottom: 1px solid var(--border-glass); padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--neon-cyan);">NEXUS ADMISSIONS VAULT DOSSIER</div>
+              <h2 style="font-size: 1.8rem; margin: 0.25rem 0;"><%= application.applicationId %></h2>
+              <div style="font-size: 0.95rem; color: var(--text-secondary);">Applicant: <strong><%= application.personalDetails.fullName %></strong> (<%= application.personalDetails.email %>)</div>
+            </div>
+
+            <div>
+              <span class="status-badge status-<%= application.status %>" style="font-size: 0.9rem; padding: 0.45rem 1.2rem;">
+                ● <%= application.status.replace('_', ' ').toUpperCase() %>
+              </span>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">PROGRAM TRACK</div>
+              <div style="font-weight: 700; color: #fff; text-transform: uppercase;"><%= application.track.replace(/-/g, ' ') %></div>
+            </div>
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">FINANCING MODEL</div>
+              <div style="font-weight: 700; color: var(--neon-cyan); text-transform: uppercase;"><%= application.fundingPreference.replace(/_/g, ' ') %></div>
+            </div>
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">EVALUATION SCORE</div>
+              <div style="font-weight: 700; color: var(--neon-emerald); font-family: var(--font-mono); font-size: 1.2rem;">
+                <%= application.reviewerScore > 0 ? `${application.reviewerScore} / 100` : 'Pending Scoring' %>
+              </div>
+            </div>
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">SUBMITTED DATE</div>
+              <div style="font-weight: 600; color: var(--text-secondary); font-size: 0.9rem;">
+                <%= new Date(application.createdAt).toLocaleDateString() %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LIVE AUDIT TIMELINE -->
+        <div class="cyber-card" style="padding: 2.5rem;">
+          <h3 style="margin-bottom: 1.75rem; color: var(--neon-cyan);">Admissions Pipeline Audit Log</h3>
+
+          <div class="curriculum-timeline" style="gap: 1.75rem;">
+            <% if (application.timeline && application.timeline.length > 0) { %>
+              <% application.timeline.forEach((event, idx) => { %>
+                <div class="year-node" style="padding-left: 55px;">
+                  <div class="year-marker" style="width: 26px; height: 26px; left: 12px; font-size: 0.75rem;">✓</div>
+                  <div style="background: rgba(4, 7, 17, 0.6); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1.25rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                      <h4 style="font-size: 1rem; color: #fff;"><%= event.title %></h4>
+                      <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);"><%= new Date(event.date).toLocaleDateString() %></span>
+                    </div>
+                    <p style="font-size: 0.88rem; margin: 0;"><%= event.description %></p>
+                  </div>
+                </div>
+              <% }) %>
+            <% } %>
+          </div>
+
+          <!-- REVIEWER REMARKS IF ANY -->
+          <% if (application.reviewerNotes && application.reviewerNotes.length > 0) { %>
+            <div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-glass);">
+              <h4 style="color: var(--neon-emerald); margin-bottom: 0.75rem;">Admissions Committee Remarks</h4>
+              <% application.reviewerNotes.forEach(note => { %>
+                <div style="background: rgba(0, 255, 157, 0.05); border: 1px solid rgba(0, 255, 157, 0.2); border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; font-size: 0.9rem;">
+                  <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--neon-emerald); margin-bottom: 0.25rem;">
+                    <%= note.author %> • <%= new Date(note.timestamp).toLocaleDateString() %>
+                  </div>
+                  <%= note.note %>
+                </div>
+              <% }) %>
+            </div>
+          <% } %>
+
+          <div style="display: flex; justify-content: space-between; margin-top: 2.5rem;">
+            <a href="/dashboard" class="btn btn-secondary">Go to Student HUD</a>
+            <a href="/launchpad" class="btn btn-primary">Explore Student Launchpad →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/ai-assistant') %>
+  <%- include('../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

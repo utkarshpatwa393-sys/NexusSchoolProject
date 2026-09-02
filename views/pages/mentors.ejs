@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <canvas id="cyber-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+
+  <%- include('../partials/header') %>
+  <%- include('../partials/flash') %>
+
+  <main class="main-content">
+    <section class="section" style="padding-top: 4rem;">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">INDUSTRY FACULTY & ADVISORS</div>
+          <h1 class="section-title">Learn from <span class="gradient-text">Frontier Architects</span></h1>
+          <p class="section-desc">
+            Direct 1:1 weekly office hours, architectural code reviews, and capstone steering from leaders at OpenAI, DeepMind, Stripe, and Y Combinator.
+          </p>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="mentors-filter-bar">
+          <a href="/mentors" class="filter-btn <%= !currentDomain ? 'active' : '' %>">All Domains</a>
+          <a href="/mentors?domain=AI+%26+LLMs" class="filter-btn <%= currentDomain === 'AI & LLMs' ? 'active' : '' %>">AI & LLMs</a>
+          <a href="/mentors?domain=Distributed+Systems" class="filter-btn <%= currentDomain === 'Distributed Systems' ? 'active' : '' %>">Distributed Systems</a>
+          <a href="/mentors?domain=Founders+%26+VC" class="filter-btn <%= currentDomain === 'Founders & VC' ? 'active' : '' %>">Founders & VC</a>
+          <a href="/mentors?domain=Robotics+%26+Hardware" class="filter-btn <%= currentDomain === 'Robotics & Hardware' ? 'active' : '' %>">Robotics & Hardware</a>
+          <a href="/mentors?domain=Fintech+%26+Web3" class="filter-btn <%= currentDomain === 'Fintech & Web3' ? 'active' : '' %>">Fintech & Web3</a>
+        </div>
+
+        <!-- Mentors Grid -->
+        <div class="mentors-grid">
+          <% mentors.forEach(mentor => { %>
+            <div class="cyber-card mentor-card">
+              <div class="mentor-header">
+                <img src="<%= mentor.avatarUrl %>" alt="<%= mentor.name %>" class="mentor-avatar">
+                <div>
+                  <h3 class="mentor-name"><%= mentor.name %></h3>
+                  <div class="mentor-role"><%= mentor.role %></div>
+                  <div class="mentor-company"><%= mentor.company %></div>
+                </div>
+              </div>
+              <p style="font-size: 0.95rem; margin-bottom: 1.25rem;"><%= mentor.bio %></p>
+              
+              <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--neon-cyan); margin-bottom: 0.75rem;">
+                ⏱ <strong>Office Hours:</strong> <%= mentor.officeHoursSlot %>
+              </div>
+
+              <div class="mentor-expertise-tags">
+                <% mentor.expertise.forEach(exp => { %>
+                  <span class="module-pill"><%= exp %></span>
+                <% }) %>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+
+        <!-- MENTORSHIP FORMAT EXPLANATION -->
+        <div class="cyber-card" style="margin-top: 4rem; padding: 2.5rem; background: rgba(10, 16, 38, 0.8);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+            <div>
+              <h4 style="color: var(--neon-cyan); margin-bottom: 0.5rem;">Weekly 1:1 Sprints</h4>
+              <p style="font-size: 0.92rem;">Every student is paired with an industry mentor for weekly 45-minute code deep dives and architectural unblocking.</p>
+            </div>
+            <div>
+              <h4 style="color: var(--neon-emerald); margin-bottom: 0.5rem;">Live PR Teardowns</h4>
+              <p style="font-size: 0.92rem;">Faculty conduct live pull-request reviews on stage, teaching students how code is audited at OpenAI and Stripe.</p>
+            </div>
+            <div>
+              <h4 style="color: #d8b4fe; margin-bottom: 0.5rem;">Direct Fast-Track Hiring</h4>
+              <p style="font-size: 0.92rem;">Mentors have direct hiring pipelines into their engineering teams, bypassing standard HR filtering.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/ai-assistant') %>
+  <%- include('../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

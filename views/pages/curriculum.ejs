@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <canvas id="cyber-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+
+  <%- include('../partials/header') %>
+  <%- include('../partials/flash') %>
+
+  <main class="main-content">
+    <section class="section" style="padding-top: 4rem;">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">4-YEAR ROADMAP</div>
+          <h1 class="section-title">The <span class="gradient-text">AI-First Curriculum Matrix</span></h1>
+          <p class="section-desc">
+            Re-architected from scratch. Every semester is structured around building production engines, writing low-level systems in Rust and CUDA, and deploying autonomous AI swarms.
+          </p>
+        </div>
+
+        <div class="curriculum-timeline">
+          <!-- YEAR 1 -->
+          <div class="year-node">
+            <div class="year-marker">Y1</div>
+            <div class="year-card">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                  <div class="section-badge" style="margin-bottom: 0.5rem;">YEAR 1: FOUNDATIONS & AGENTIC ARCHITECTURES</div>
+                  <h3>Systems Programming & Autonomous Agent Loops</h3>
+                </div>
+                <div style="font-family: var(--font-mono); color: var(--neon-cyan); font-size: 0.9rem;">60 ECTS Credits</div>
+              </div>
+              <p style="margin-top: 0.5rem;">Move beyond basic scripts. Master low-level memory management, data structures from scratch in Rust, and build multi-agent loops with LLM tool invocation.</p>
+              
+              <div class="semester-grid">
+                <div class="semester-box">
+                  <div class="semester-tag">Semester 1: Neural Systems & Memory</div>
+                  <h4 style="margin-bottom: 0.5rem; font-size: 1rem;">Rust & Low-Level Foundations</h4>
+                  <p style="font-size: 0.85rem; margin-bottom: 0.75rem;">Memory safety, ownership models, async event loops, pointers, and SIMD instructions.</p>
+                  <div>
+                    <span class="module-pill">Rust</span>
+                    <span class="module-pill">Async Tokio</span>
+                    <span class="module-pill">Linear Algebra</span>
+                    <span class="module-pill">Git Workflows</span>
+                  </div>
+                </div>
+
+                <div class="semester-box">
+                  <div class="semester-tag">Semester 2: Autonomous Agentic AI</div>
+                  <h4 style="margin-bottom: 0.5rem; font-size: 1rem;">Multi-Agent Orchestration</h4>
+                  <p style="font-size: 0.85rem; margin-bottom: 0.75rem;">Building autonomous reasoning loops, LangGraph, tool calling, and vector embeddings.</p>
+                  <div>
+                    <span class="module-pill">PyTorch</span>
+                    <span class="module-pill">Vector DBs</span>
+                    <span class="module-pill">LangGraph</span>
+                    <span class="module-pill">Claude SDK</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- YEAR 2 -->
+          <div class="year-node">
+            <div class="year-marker">Y2</div>
+            <div class="year-card">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                  <div class="section-badge" style="margin-bottom: 0.5rem; border-color: var(--neon-emerald); color: var(--neon-emerald);">YEAR 2: DISTRIBUTED SYSTEMS & HARDWARE ACCELERATION</div>
+                  <h3>Custom LLM Kernels & Supercompute Clusters</h3>
+                </div>
+                <div style="font-family: var(--font-mono); color: var(--neon-emerald); font-size: 0.9rem;">60 ECTS Credits</div>
+              </div>
+              <p style="margin-top: 0.5rem;">Dive into the silicon layer. Write custom Triton and CUDA kernels, implement Raft consensus engines, and optimize high-throughput distributed inference.</p>
+              
+              <div class="semester-grid">
+                <div class="semester-box">
+                  <div class="semester-tag">Semester 3: Distributed State & Consensus</div>
+                  <h4 style="margin-bottom: 0.5rem; font-size: 1rem;">Distributed Databases & Raft</h4>
+                  <p style="font-size: 0.85rem; margin-bottom: 0.75rem;">Lock-free queues, Paxos/Raft consensus, eBPF network tracing, and sub-millisecond gRPC.</p>
+                  <div>
+                    <span class="module-pill">Raft Consensus</span>
+                    <span class="module-pill">eBPF</span>
+                    <span class="module-pill">gRPC</span>
+                    <span class="module-pill">Go</span>
+                  </div>
+                </div>
+
+                <div class="semester-box">
+                  <div class="semester-tag">Semester 4: Silicon & Kernel Engineering</div>
+                  <h4 style="margin-bottom: 0.5rem; font-size: 1rem;">CUDA & Triton Kernel Programming</h4>
+                  <p style="font-size: 0.85rem; margin-bottom: 0.75rem;">Matrix multiplication acceleration, FlashAttention implementation, and multi-GPU tensor sharding.</p>
+                  <div>
+                    <span class="module-pill">CUDA</span>
+                    <span class="module-pill">Triton</span>
+                    <span class="module-pill">FlashAttention</span>
+                    <span class="module-pill">H100 SXM5</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- YEAR 3 -->
+          <div class="year-node">
+            <div class="year-marker">Y3</div>
+            <div class="year-card">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                  <div class="section-badge" style="margin-bottom: 0.5rem; border-color: var(--neon-purple); color: #d8b4fe;">YEAR 3: PRODUCTION SCALE & GLOBAL RESIDENCY</div>
+                  <h3>Silicon Valley & Bangalore Apprenticeship</h3>
+                </div>
+                <div style="font-family: var(--font-mono); color: var(--neon-purple); font-size: 0.9rem;">60 ECTS Credits</div>
+              </div>
+              <p style="margin-top: 0.5rem;">Students work on real production software teams or inside frontier AI research labs with our global partners in San Francisco, Tokyo, and Bangalore.</p>
+              
+              <div class="semester-grid">
+                <div class="semester-box">
+                  <div class="semester-tag">Semester 5: Enterprise Scale & SRE</div>
+                  <h4 style="margin-bottom: 0.5rem; font-size: 1rem;">Zero-Downtime Infrastructure</h4>
+                  <p style="font-size: 0.85rem; margin-bottom: 0.75rem;">Kubernetes at scale, chaos engineering, model safety & guardrail evaluation harness.</p>
+                  <div>
+                    <span class="module-pill">Kubernetes</span>
+                    <span class="module-pill">Chaos Mesh</span>
+                    <span class="module-pill">OpenAI Evals</span>
+                    <span class="module-pill">Security</span>
+                  </div>
+                </div>
+
+                <div class="semester-box">
+                  <div class="semester-tag">Semester 6: Industry Residency</div>
+                  <h4 style="margin-bottom: 0.5rem; font-size: 1rem;">Direct Tech Lab Apprenticeship</h4>
+                  <p style="font-size: 0.85rem; margin-bottom: 0.75rem;">6-month paid full-time engineering residency at partner companies like Stripe, Anthropic, and top startups.</p>
+                  <div>
+                    <span class="module-pill">Full-Time Lab</span>
+                    <span class="module-pill">1:1 Mentorship</span>
+                    <span class="module-pill">PR Reviews</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- YEAR 4 -->
+          <div class="year-node">
+            <div class="year-marker">Y4</div>
+            <div class="year-card">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                  <div class="section-badge" style="margin-bottom: 0.5rem; border-color: var(--neon-amber); color: var(--neon-amber);">YEAR 4: CAPSTONE STARTUP & VENTURE FOUNDRY</div>
+                  <h3>Venture Launch & Research Defense</h3>
+                </div>
+                <div style="font-family: var(--font-mono); color: var(--neon-amber); font-size: 0.9rem;">60 ECTS Credits</div>
+              </div>
+              <p style="margin-top: 0.5rem;">Build a breakthrough open-source technology or venture-backed tech company. Defend your work in front of top VC partners and researchers.</p>
+              
+              <div class="semester-grid">
+                <div class="semester-box">
+                  <div class="semester-tag">Semester 7: Venture Incubation</div>
+                  <h4 style="margin-bottom: 0.5rem; font-size: 1rem;">Product-Led Growth & GTM</h4>
+                  <p style="font-size: 0.85rem; margin-bottom: 0.75rem;">Building from MVP to $100k ARR, user acquisition for developer tools, and developer docs.</p>
+                  <div>
+                    <span class="module-pill">GTM Strategy</span>
+                    <span class="module-pill">DevRel</span>
+                    <span class="module-pill">Telemetry</span>
+                  </div>
+                </div>
+
+                <div class="semester-box">
+                  <div class="semester-tag">Semester 8: Demo Day & Defense</div>
+                  <h4 style="margin-bottom: 0.5rem; font-size: 1rem;">Silicon Valley Demo Day</h4>
+                  <p style="font-size: 0.85rem; margin-bottom: 0.75rem;">Live presentation and investor term sheet negotiations in San Francisco.</p>
+                  <div>
+                    <span class="module-pill">Demo Day</span>
+                    <span class="module-pill">Venture Grants</span>
+                    <span class="module-pill">Graduation</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem;">
+          <a href="/apply" class="btn btn-primary btn-lg">Apply for Batch of 2026-2030</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/ai-assistant') %>
+  <%- include('../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

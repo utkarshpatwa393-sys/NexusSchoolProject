@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <canvas id="cyber-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+
+  <%- include('../partials/header') %>
+  <%- include('../partials/flash') %>
+
+  <main class="main-content">
+    <section class="section" style="padding-top: 4rem;">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ACADEMIC & FOUNDER TRACKS</div>
+          <h1 class="section-title">Engineered for the <span class="gradient-text">Top 1% of Builders</span></h1>
+          <p class="section-desc">
+            Choose an immersive degree or fellowship designed to accelerate you straight to AI research scientist, systems architect, or venture-backed founder.
+          </p>
+        </div>
+
+        <!-- TRACK 1: B.TECH AI & CS -->
+        <div class="cyber-card" style="margin-bottom: 3.5rem; padding: 3rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div class="track-icon" style="margin-bottom: 0;">🤖</div>
+              <div>
+                <h2>B.Tech in Artificial Intelligence & Computer Science</h2>
+                <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--neon-cyan);">4-Year Accredited Undergraduate Degree • 128 H100 GPU Allocation</div>
+              </div>
+            </div>
+            <a href="/apply?track=btech-ai-cs" class="btn btn-primary">Apply for this Track</a>
+          </div>
+
+          <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+            This program is engineered for software engineers who want to specialize in modern agentic architectures, transformer pretraining, high-performance distributed systems, and real-time AI reasoning.
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+            <div style="background: rgba(4, 7, 17, 0.6); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-glass);">
+              <h4 style="color: var(--neon-cyan); margin-bottom: 0.5rem;">Core Competencies</h4>
+              <p style="font-size: 0.9rem;">Agentic Reasoning Loops, RLHF, CUDA/Triton Kernel Programming, Vector Database Optimization.</p>
+            </div>
+            <div style="background: rgba(4, 7, 17, 0.6); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-glass);">
+              <h4 style="color: var(--neon-cyan); margin-bottom: 0.5rem;">Hardware Access</h4>
+              <p style="font-size: 0.9rem;">120 dedicated H100 SXM5 GPU compute hours/month on the local 3.2 Tbps InfiniBand cluster.</p>
+            </div>
+            <div style="background: rgba(4, 7, 17, 0.6); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-glass);">
+              <h4 style="color: var(--neon-cyan); margin-bottom: 0.5rem;">Capstone Milestone</h4>
+              <p style="font-size: 0.9rem;">Train and open-source a specialized foundation model or multi-agent platform with 10k+ monthly active users.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRACK 2: B.TECH ROBOTICS & AUTONOMOUS SYSTEMS -->
+        <div class="cyber-card cyber-card-glow-emerald" style="margin-bottom: 3.5rem; padding: 3rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div class="track-icon" style="border-color: var(--neon-emerald); background: rgba(0, 255, 157, 0.1); margin-bottom: 0;">🛰️</div>
+              <div>
+                <h2>B.Tech in Autonomous Systems & Robotics</h2>
+                <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--neon-emerald);">4-Year Immersive Degree • Maker Lab & Spatial Hardware Lab</div>
+              </div>
+            </div>
+            <a href="/apply?track=btech-autonomous-systems" class="btn btn-emerald">Apply for this Track</a>
+          </div>
+
+          <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+            Bridging software intelligence and physical reality. Build autonomous quadcopters, robotic manipulators, and humanoid gait systems with embedded real-time microkernels.
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+            <div style="background: rgba(4, 7, 17, 0.6); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-glass);">
+              <h4 style="color: var(--neon-emerald); margin-bottom: 0.5rem;">Core Competencies</h4>
+              <p style="font-size: 0.9rem;">ROS2, SLAM & 3D Gaussian Splatting, Embedded Rust/C++, Real-Time Kinematics, Sensor Fusion.</p>
+            </div>
+            <div style="background: rgba(4, 7, 17, 0.6); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-glass);">
+              <h4 style="color: var(--neon-emerald); margin-bottom: 0.5rem;">Lab Infrastructure</h4>
+              <p style="font-size: 0.9rem;">Full-scale Maker Lab equipped with 5-axis CNCs, stereolithography 3D printers, and drone flight cages.</p>
+            </div>
+            <div style="background: rgba(4, 7, 17, 0.6); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-glass);">
+              <h4 style="color: var(--neon-emerald); margin-bottom: 0.5rem;">Capstone Milestone</h4>
+              <p style="font-size: 0.9rem;">Deploy an autonomous drone or wheeled robot operating in GPS-denied complex physical terrain.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRACK 3: FOUNDER FELLOWSHIP -->
+        <div class="cyber-card cyber-card-glow-purple" style="padding: 3rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div class="track-icon" style="border-color: var(--neon-purple); background: rgba(157, 78, 221, 0.1); margin-bottom: 0;">💡</div>
+              <div>
+                <h2>Nexus Founder Fellowship & Accelerator Track</h2>
+                <div style="font-family: var(--font-mono); font-size: 0.85rem; color: #d8b4fe;">1-Year Residency • 0% Equity Grants • $100,000 Compute Pool</div>
+              </div>
+            </div>
+            <a href="/apply?track=founder-fellowship" class="btn btn-purple">Apply for Founder Track</a>
+          </div>
+
+          <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+            A dedicated residency for elite hackers and engineers determined to build venture-scale companies. Live in the Nexus Hackerhouse, get $100k non-dilutive compute grants, and pitch directly to Silicon Valley partners at Demo Day.
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+            <div style="background: rgba(4, 7, 17, 0.6); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-glass);">
+              <h4 style="color: #d8b4fe; margin-bottom: 0.5rem;">Zero Equity Dilution</h4>
+              <p style="font-size: 0.9rem;">We take 0% equity. We succeed when our fellows build generational technology companies.</p>
+            </div>
+            <div style="background: rgba(4, 7, 17, 0.6); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-glass);">
+              <h4 style="color: #d8b4fe; margin-bottom: 0.5rem;">Venture Network</h4>
+              <p style="font-size: 0.9rem;">Weekly dinner sessions with partners from Sequoia, Y Combinator, Lightspeed, and Nexus Capital.</p>
+            </div>
+            <div style="background: rgba(4, 7, 17, 0.6); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border-glass);">
+              <h4 style="color: #d8b4fe; margin-bottom: 0.5rem;">Silicon Valley Demo Day</h4>
+              <p style="font-size: 0.9rem;">Cohort travels to San Francisco for high-stakes investor pitch sessions and product demos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/ai-assistant') %>
+  <%- include('../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <canvas id="cyber-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+
+  <%- include('../partials/header') %>
+  <%- include('../partials/flash') %>
+
+  <main class="main-content">
+    <section class="section" style="padding-top: 4rem;">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">CAMPUS & INFRASTRUCTURE</div>
+          <h1 class="section-title">24/7 Hackerhouse & <span class="gradient-text">H100 Supercluster</span></h1>
+          <p class="section-desc">
+            A physical and digital cyber-campus designed from the ground up for relentless builders. No lecture halls—only high-speed maker pods, supercompute racks, and focus suites.
+          </p>
+        </div>
+
+        <!-- GPU CLUSTER DEEP-DIVE -->
+        <div class="cyber-card" style="margin-bottom: 3.5rem; padding: 3rem; background: linear-gradient(135deg, rgba(6, 12, 30, 0.95) 0%, rgba(14, 25, 55, 0.95) 100%);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2rem;">
+            <div>
+              <div class="section-badge" style="margin-bottom: 0.5rem; border-color: var(--neon-cyan); color: var(--neon-cyan);">NEXUS SUPERCOMPUTE SUB-SYSTEM</div>
+              <h2>128x NVIDIA H100 SXM5 Cluster</h2>
+            </div>
+            <div class="nav-status-badge" style="font-size: 0.9rem; padding: 0.5rem 1rem;">
+              <span class="status-dot"></span>
+              <span>100% OPERATIONAL IN BANGALORE NOC</span>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
+            <div style="background: rgba(4, 7, 17, 0.6); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-glass);">
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">TOPOLOGY</div>
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--neon-cyan); margin: 0.25rem 0;">16 Nodes</div>
+              <p style="font-size: 0.85rem;">8x H100 SXM5 80GB GPUs per compute node via NVLink 4.0.</p>
+            </div>
+
+            <div style="background: rgba(4, 7, 17, 0.6); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-glass);">
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">INTERCONNECT</div>
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--neon-emerald); margin: 0.25rem 0;">3.2 Tbps</div>
+              <p style="font-size: 0.85rem;">NVIDIA Quantum-2 InfiniBand for zero-latency multi-node all-reduce.</p>
+            </div>
+
+            <div style="background: rgba(4, 7, 17, 0.6); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-glass);">
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">STORAGE FABRIC</div>
+              <div style="font-size: 1.5rem; font-weight: 800; color: #d8b4fe; margin: 0.25rem 0;">2.5 PB NVMe</div>
+              <p style="font-size: 0.85rem;">Lustre parallel filesystem delivering 400 GB/s sequential reads.</p>
+            </div>
+
+            <div style="background: rgba(4, 7, 17, 0.6); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-glass);">
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">STUDENT QUOTA</div>
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--neon-amber); margin: 0.25rem 0;">120 Hrs/mo</div>
+              <p style="font-size: 0.85rem;">Free allocation refreshed monthly + grant expansions for capstones.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- HACKERHOUSE LIVING & AMENITIES -->
+        <div class="tracks-grid">
+          <div class="cyber-card">
+            <div class="track-icon">⚡</div>
+            <h3>24/7 Hacker Pods & Fiber</h3>
+            <p>10 Gbps symmetrical fiber, Herman Miller ergonomic chairs, dual 4K OLED monitor setups at every builder station.</p>
+          </div>
+
+          <div class="cyber-card cyber-card-glow-emerald">
+            <div class="track-icon" style="border-color: var(--neon-emerald); background: rgba(0, 255, 157, 0.1);">🛠️</div>
+            <h3>Maker Lab & Prototyping</h3>
+            <p>5-Axis CNC mills, SLA 3D printers, electronics oscilloscopes, solder stations, and robotic motion capture rigs.</p>
+          </div>
+
+          <div class="cyber-card cyber-card-glow-purple">
+            <div class="track-icon" style="border-color: var(--neon-purple); background: rgba(157, 78, 221, 0.1);">🧬</div>
+            <h3>Biohacking & Wellness</h3>
+            <p>Infrared saunas, cold plunge tubs, circadian sleep pods, and whole-food nutrition kitchen curated for cognitive performance.</p>
+          </div>
+        </div>
+
+        <!-- GLOBAL RESIDENCY -->
+        <div class="cyber-card" style="margin-top: 3.5rem; padding: 3rem;">
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+            <div class="track-icon" style="margin-bottom: 0;">🌐</div>
+            <div>
+              <h3>Silicon Valley & Global Residency Hubs</h3>
+              <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--neon-cyan);">Bangalore • San Francisco • Tokyo</div>
+            </div>
+          </div>
+          <p style="font-size: 1.05rem; margin-bottom: 1.5rem;">
+            During Year 3 and Year 4, students can rotate across our partner hackerhouses in San Francisco (SoMa) and Tokyo (Shibuya) to build local network density, pitch to global investors, and work directly with international engineering teams.
+          </p>
+          <a href="/apply" class="btn btn-primary">Apply to the Hackerhouse Cohort</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/ai-assistant') %>
+  <%- include('../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

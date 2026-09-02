@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <canvas id="cyber-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+
+  <%- include('../../partials/header') %>
+  <%- include('../../partials/flash') %>
+
+  <main class="main-content">
+    <section class="section" style="padding-top: 4rem;">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge" style="border-color: var(--neon-rose); color: var(--neon-rose);">GLOBAL COMPETITIONS & SPRINTS</div>
+          <h1 class="section-title">Nexus <span class="gradient-text">Hackathon Arena</span></h1>
+          <p class="section-desc">
+            48-hour intense engineering challenges. Compete for cash prize pools, dedicated H100 compute bounties, and direct admissions fast-tracks.
+          </p>
+        </div>
+
+        <div class="hackathons-grid">
+          <% hackathons.forEach(hack => { %>
+            <div class="cyber-card hackathon-card">
+              <img src="<%= hack.bannerImage %>" alt="<%= hack.title %>" class="hackathon-banner">
+              
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                <div class="section-badge" style="margin-bottom: 0;"><%= hack.theme %></div>
+                <span class="status-badge <%= hack.status === 'active' ? 'status-accepted' : 'status-tech_assessment' %>">
+                  ● <%= hack.status.toUpperCase() %>
+                </span>
+              </div>
+
+              <h2 style="font-size: 1.35rem; margin-bottom: 0.5rem; color: #fff;"><%= hack.title %></h2>
+              <p style="font-size: 0.92rem; margin-bottom: 1rem;"><%= hack.tagline %></p>
+              
+              <div style="font-family: var(--font-mono); font-size: 1.15rem; font-weight: 800; color: var(--neon-emerald); margin-bottom: 1rem;">
+                💰 <%= hack.prizePool %>
+              </div>
+
+              <!-- COUNTDOWN -->
+              <div class="hackathon-countdown" data-end="<%= hack.endDate.toISOString() %>">
+                <div class="countdown-box">
+                  <div class="countdown-num c-days">00</div>
+                  <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-box">
+                  <div class="countdown-num c-hours">00</div>
+                  <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-box">
+                  <div class="countdown-num c-mins">00</div>
+                  <div class="countdown-label">Mins</div>
+                </div>
+                <div class="countdown-box">
+                  <div class="countdown-num c-secs">00</div>
+                  <div class="countdown-label">Secs</div>
+                </div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--text-muted); margin: 1rem 0;">
+                <span>👥 <%= hack.participantCount %> Builders Enrolled</span>
+                <span>📍 <%= hack.location %></span>
+              </div>
+
+              <div style="margin-top: auto;">
+                <a href="/hackathons/<%= hack.slug %>" class="btn btn-primary btn-block">Inspect Rules & Enter Sprint</a>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../../partials/ai-assistant') %>
+  <%- include('../../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
