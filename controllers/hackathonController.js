@@ -6,13 +6,13 @@ module.exports = {
     try {
       const hackathons = await dataService.getAllHackathons();
       res.render('pages/hackathons/index', {
-        title: 'Nexus Cyber Arena & Hackathons | Nexus Institute of Technology',
+        title: 'Bitwise Cyber Arena & Hackathons | Bitwise School of Technology',
         hackathons
       });
     } catch (err) {
       console.error('Error loading hackathons:', err);
       res.render('pages/hackathons/index', {
-        title: 'Hackathons | Nexus Institute of Technology',
+        title: 'Hackathons | Bitwise School of Technology',
         hackathons: []
       });
     }
@@ -34,7 +34,7 @@ module.exports = {
         : false;
 
       res.render('pages/hackathons/show', {
-        title: `${hackathon.title} | Nexus Institute of Technology`,
+        title: `${hackathon.title} | Bitwise School of Technology`,
         hackathon,
         isRegistered
       });

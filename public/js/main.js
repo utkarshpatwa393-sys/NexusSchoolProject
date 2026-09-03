@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NEXUS INSTITUTE OF TECHNOLOGY - CLIENT-SIDE NEURAL CORE (JS)
+   BITWISE SCHOOL OF TECHNOLOGY - CLIENT-SIDE NEURAL CORE (JS)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -131,7 +131,7 @@ function initTerminal() {
   async function executeCommand(command) {
     if (command.toLowerCase() === 'clear') {
       terminalBody.innerHTML = `
-        <div class="terminal-line"><span class="terminal-prompt">nexus@guest:~$</span> <span class="terminal-output">Buffer cleared. Type 'help' for instructions.</span></div>
+        <div class="terminal-line"><span class="terminal-prompt">bitwise@guest:~$</span> <span class="terminal-output">Buffer cleared. Type 'help' for instructions.</span></div>
       `;
       return;
     }
@@ -139,7 +139,7 @@ function initTerminal() {
     // Append user input line
     const userLine = document.createElement('div');
     userLine.className = 'terminal-line';
-    userLine.innerHTML = `<span class="terminal-prompt">nexus@guest:~$</span> ${escapeHtml(command)}`;
+    userLine.innerHTML = `<span class="terminal-prompt">bitwise@guest:~$</span> ${escapeHtml(command)}`;
     terminalBody.appendChild(userLine);
 
     try {
@@ -173,7 +173,7 @@ function initTerminal() {
 }
 
 // ==========================================================================
-// 3. NEXUS AI NAVIGATOR CHATBOT
+// 3. BITWISE AI NAVIGATOR CHATBOT
 // ==========================================================================
 function initAiAssistant() {
   const trigger = document.getElementById('ai-bot-trigger');
@@ -346,7 +346,7 @@ function initIsaCalculator() {
 
     salaryDisplay.innerText = `₹${annualSalaryLakhs} LPA ($${Math.round(annualSalary / 84).toLocaleString()})`;
 
-    // Nexus ISA terms: 12% of monthly salary for 36 months if salary > 18 LPA, capped at ₹15 Lakhs total
+    // Bitwise ISA terms: 12% of monthly salary for 36 months if salary > 18 LPA, capped at ₹15 Lakhs total
     if (annualSalaryLakhs < 18) {
       monthlyPaymentDisplay.innerText = '₹0 / month';
       totalRepaymentDisplay.innerText = '₹0 (Under Minimum Threshold)';

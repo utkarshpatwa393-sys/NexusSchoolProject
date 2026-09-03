@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
     default: function() {
       if (this.role === 'student' || this.role === 'admin') {
         const rand = Math.floor(1000 + Math.random() * 9000);
-        return `NIT-2026-${rand}`;
+        return `BST-2026-${rand}`;
       }
       return null;
     }
@@ -57,7 +57,7 @@ const userSchema = new mongoose.Schema({
   },
   badgeTier: {
     type: String,
-    enum: ['Novice Builder', 'Neural Architect', 'Founding Fellow', 'Nexus Staff / Admin'],
+    enum: ['Novice Builder', 'Neural Architect', 'Founding Fellow', 'Bitwise Staff / Admin', 'Nexus Staff / Admin'],
     default: 'Novice Builder'
   },
   createdAt: {

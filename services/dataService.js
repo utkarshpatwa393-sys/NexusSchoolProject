@@ -58,7 +58,7 @@ async function initMemoryState() {
   memoryState.applications = [
     {
       _id: 'app_mem_1',
-      applicationId: 'NEXUS-APP-894120',
+      applicationId: 'BITWISE-APP-894120',
       user: sampleUser._id,
       track: 'btech-ai-cs',
       status: 'under_review',
@@ -87,15 +87,16 @@ async function initMemoryState() {
         hackathonsAttended: 3
       },
       essayChallenge: {
-        visionEssay: 'With 10,000 H100 GPU compute hours at Nexus, I will train a decentralized neural-symbolic reasoning engine capable of formal mathematical verification in real-time.',
-        whyNexus: 'Traditional colleges teach 20-year-old C++ syntax and rote definitions. Nexus is the only institution where I can sit next to OpenAI researchers and ship production systems from day one.',
+        visionEssay: 'With 10,000 H100 GPU compute hours at Bitwise, I will train a decentralized neural-symbolic reasoning engine capable of formal mathematical verification in real-time.',
+        whyBitwise: 'Traditional colleges teach 20-year-old C++ syntax and rote definitions. Bitwise is the only institution where I can sit next to OpenAI researchers and ship production systems from day one.',
+        whyNexus: 'Traditional colleges teach 20-year-old C++ syntax and rote definitions. Bitwise is the only institution where I can sit next to OpenAI researchers and ship production systems from day one.',
         founderAmbition: 'I want to build and venture-back an open-source Autonomous Software Engineering foundry in India for global enterprises.'
       },
       fundingPreference: 'income_share_agreement',
       reviewerScore: 92,
       reviewerNotes: [
         {
-          author: 'Nexus Admissions Board',
+          author: 'Bitwise Admissions Board',
           note: 'Outstanding GitHub project demonstration with clear deep learning mastery. Fast-tracked for Founder Fellowship interview.',
           timestamp: new Date()
         }
@@ -160,11 +161,11 @@ const dataService = {
       ...userData,
       email: userData.email.toLowerCase().trim(),
       password: hashedPassword,
-      studentId: userData.role === 'student' || userData.role === 'admin' ? `NIT-2026-${rand}` : null,
+      studentId: userData.role === 'student' || userData.role === 'admin' ? `BST-2026-${rand}` : null,
       avatar: userData.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
       bio: userData.bio || 'Building the next generation of autonomous AI systems & software engines.',
       computeHours: userData.role === 'admin' ? 9999 : 120,
-      badgeTier: userData.role === 'admin' ? 'Nexus Staff / Admin' : 'Novice Builder',
+      badgeTier: userData.role === 'admin' ? 'Bitwise Staff / Admin' : 'Novice Builder',
       createdAt: new Date(),
       comparePassword: async function(candidate) {
         return bcrypt.compare(candidate, this.password);
@@ -360,7 +361,7 @@ const dataService = {
     const num = Math.floor(100000 + Math.random() * 900000);
     const newApp = {
       _id: `app_mem_${Date.now()}`,
-      applicationId: `NEXUS-APP-${num}`,
+      applicationId: `BITWISE-APP-${num}`,
       ...appData,
       status: 'submitted',
       reviewerScore: 0,
@@ -368,7 +369,7 @@ const dataService = {
       timeline: [
         {
           title: 'Application Dossier Submitted',
-          description: 'Your application has been received and encrypted in the Nexus Admissions Vault.',
+          description: 'Your application has been received and encrypted in the Bitwise Admissions Vault.',
           date: new Date(),
           status: 'submitted'
         }
@@ -426,11 +427,11 @@ const dataService = {
       },
       interview_scheduled: {
         title: 'Founder / Faculty 1:1 Scheduled',
-        desc: 'Live interview with Nexus Faculty and Industry Mentors booked.'
+        desc: 'Live interview with Bitwise Faculty and Industry Mentors booked.'
       },
       accepted: {
         title: 'Admissions Offer Extended (Cohort 2026)',
-        desc: 'Welcome to Nexus! Your fellowship agreement and onboarding dossier are issued.'
+        desc: 'Welcome to Bitwise! Your fellowship agreement and onboarding dossier are issued.'
       },
       waitlisted: {
         title: 'Placed on Priority Waitlist',
@@ -451,7 +452,7 @@ const dataService = {
       }
       if (reviewerNote && reviewerNote.trim()) {
         app.reviewerNotes.push({
-          author: 'Nexus Admissions Board',
+          author: 'Bitwise Admissions Board',
           note: reviewerNote.trim(),
           timestamp: new Date()
         });
@@ -476,7 +477,7 @@ const dataService = {
     if (reviewerNote && reviewerNote.trim()) {
       if (!app.reviewerNotes) app.reviewerNotes = [];
       app.reviewerNotes.push({
-        author: 'Nexus Admissions Board',
+        author: 'Bitwise Admissions Board',
         note: reviewerNote.trim(),
         timestamp: new Date()
       });

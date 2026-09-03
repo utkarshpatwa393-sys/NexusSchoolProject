@@ -8,12 +8,12 @@ module.exports = {
 
     const responses = {
       help: `
-⚡ NEXUS OS [Version 4.2.0-neural] - AVAILABLE COMMANDS:
+⚡ BITWISE OS [Version 4.2.0-neural] - AVAILABLE COMMANDS:
 ---------------------------------------------------------
   • tracks       : List undergraduate & fellowship engineering tracks
   • curriculum   : Output 4-year AI-first syllabus & milestone timeline
   • mentors      : Display industry faculty roster (OpenAI, DeepMind, Stripe)
-  • specs        : Inspect Nexus Supercompute Cluster (NVIDIA H100 pods)
+  • specs        : Inspect Bitwise Supercompute Cluster (NVIDIA H100 pods)
   • hackathons   : List active prize bounties and upcoming sprints
   • apply        : Initiate admissions sequence for Batch of 2026-2030
   • stats        : Query admissions velocity & platform metrics
@@ -43,11 +43,11 @@ module.exports = {
 • Dr. Aris Vance    | Principal Research Scientist, OpenAI
 • Kaelen Thorne     | Staff Infrastructure Engineer, Google DeepMind
 • Seraphina Lin     | VP of Core Platform, Stripe
-• Ronan Gallagher   | 2x YC Founder & GP, Nexus Capital
+• Ronan Gallagher   | 2x YC Founder & GP, Bitwise Capital
 • Maya Takahashi    | Principal Robotics Engineer, Ex-Tesla Autopilot
 `,
       specs: `
-[NEXUS SUPERCOMPUTE CLUSTER SPECIFICATIONS]
+[BITWISE SUPERCOMPUTE CLUSTER SPECIFICATIONS]
 ---------------------------------------------------------
 • GPUs          : 128x NVIDIA H100 Tensor Core GPUs (80GB SXM5)
 • Interconnect  : 3.2 Tbps NVIDIA Quantum-2 InfiniBand
@@ -58,7 +58,7 @@ module.exports = {
       hackathons: `
 [ACTIVE GLOBAL PRIZE SPRINT]
 ---------------------------------------------------------
-🏆 NEXUS ZERO-1: Autonomous Agent Hackathon
+🏆 BITWISE ZERO-1: Autonomous Agent Hackathon
    • Prize Pool: $75,000 Cash + 25,000 H100 Hours
    • Theme: Autonomous Code & Multi-Agent Swarms
    • Status: ACTIVE - Type /hackathons to join!
@@ -91,19 +91,19 @@ Admissions portal unlocked. Redirecting in 2 seconds...
     return res.json({
       success: true,
       command: cmd,
-      output: `Unknown command: "${command}". Type "help" for a list of available Nexus OS instructions.`
+      output: `Unknown command: "${command}". Type "help" for a list of available Bitwise OS instructions.`
     });
   },
 
-  // POST /api/ai-assistant - Nexus AI Navigator Query
+  // POST /api/ai-assistant - Bitwise AI Navigator Query
   async postAiAssistant(req, res) {
     const { question } = req.body;
     const q = (question || '').toLowerCase();
 
-    let reply = "I am the Nexus AI Navigator. I can help you understand our AI-first B.Tech curriculum, Income Share Agreements (ISA), NVIDIA H100 GPU compute access, and Admissions criteria.";
+    let reply = "I am the Bitwise AI Navigator. I can help you understand our AI-first B.Tech curriculum, Income Share Agreements (ISA), NVIDIA H100 GPU compute access, and Admissions criteria.";
 
     if (q.includes('isa') || q.includes('income share') || q.includes('fees') || q.includes('tuition') || q.includes('cost')) {
-      reply = "Nexus offers a zero-upfront-tuition Income Share Agreement (ISA). You only pay back a capped percentage of your salary after you secure a tech role paying above ₹20,00,000 / $25,000 per year. Merit fellowships are also awarded to top 5% of applicants!";
+      reply = "Bitwise offers a zero-upfront-tuition Income Share Agreement (ISA). You only pay back a capped percentage of your salary after you secure a tech role paying above ₹20,00,000 / $25,000 per year. Merit fellowships are also awarded to top 5% of applicants!";
     } else if (q.includes('gpu') || q.includes('h100') || q.includes('compute') || q.includes('hardware')) {
       reply = "Every student receives 120 dedicated NVIDIA H100 SXM5 GPU compute hours per month, connected via 3.2 Tbps InfiniBand to our petabyte-scale NVMe cluster, allowing real-time LLM pretraining and robotics simulation.";
     } else if (q.includes('curriculum') || q.includes('syllabus') || q.includes('semester') || q.includes('study')) {
@@ -113,7 +113,7 @@ Admissions portal unlocked. Redirecting in 2 seconds...
     } else if (q.includes('apply') || q.includes('deadline') || q.includes('eligibility') || q.includes('admission')) {
       reply = "Applications for the Cohort of 2026-2030 are currently OPEN! The selection process includes an online dossier, a 90-minute systems design challenge, and a 1:1 interview with our founding faculty.";
     } else if (q.includes('hackerhouse') || q.includes('campus') || q.includes('hostel') || q.includes('living')) {
-      reply = "Nexus features a 24/7 Hackerhouse in Bangalore equipped with high-speed fiber, hardware maker labs with CNC and 3D printers, ergonomic focus pods, and biohacking recovery suites.";
+      reply = "Bitwise features a 24/7 Hackerhouse in Bangalore equipped with high-speed fiber, hardware maker labs with CNC and 3D printers, ergonomic focus pods, and biohacking recovery suites.";
     }
 
     return res.json({

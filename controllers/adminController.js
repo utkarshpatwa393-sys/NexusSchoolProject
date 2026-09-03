@@ -16,7 +16,7 @@ module.exports = {
       const projects = await dataService.getAllProjects();
 
       res.render('pages/admin/dashboard', {
-        title: 'Admissions Command Center | Nexus Institute of Technology',
+        title: 'Admissions Command Center | Bitwise School of Technology',
         applications,
         stats,
         mentorsCount: mentors.length,
@@ -51,7 +51,7 @@ module.exports = {
       }
 
       res.render('pages/admin/application-detail', {
-        title: `Review Dossier: ${application.applicationId} | Nexus Command Center`,
+        title: `Review Dossier: ${application.applicationId} | Bitwise Command Center`,
         application
       });
     } catch (err) {
@@ -94,7 +94,7 @@ module.exports = {
       const projects = await dataService.getAllProjects();
 
       res.render('pages/admin/manage-content', {
-        title: 'Content & Faculty Command | Nexus Institute of Technology',
+        title: 'Content & Faculty Command | Bitwise School of Technology',
         mentors,
         hackathons,
         projects

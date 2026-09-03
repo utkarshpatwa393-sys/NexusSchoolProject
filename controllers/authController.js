@@ -8,7 +8,7 @@ module.exports = {
     }
     const redirectUrl = req.query.redirect || '/dashboard';
     res.render('pages/auth/login', {
-      title: 'Neural Login | Nexus Institute of Technology',
+      title: 'Neural Login | Bitwise School of Technology',
       redirectUrl
     });
   },
@@ -49,7 +49,7 @@ module.exports = {
         badgeTier: user.badgeTier
       };
 
-      req.flash('success', `Access Granted. Welcome back to Nexus, ${user.name.split(' ')[0]}!`);
+      req.flash('success', `Access Granted. Welcome back to Bitwise, ${user.name.split(' ')[0]}!`);
       const dest = redirectUrl && redirectUrl.startsWith('/') ? redirectUrl : (user.role === 'admin' ? '/admin' : '/dashboard');
       return res.redirect(dest);
     } catch (err) {
@@ -65,7 +65,7 @@ module.exports = {
       return res.redirect('/dashboard');
     }
     res.render('pages/auth/register', {
-      title: 'Create Nexus Identity | Nexus Institute of Technology',
+      title: 'Create Bitwise Identity | Bitwise School of Technology',
       track: req.query.track || 'btech-ai-cs'
     });
   },
@@ -92,7 +92,7 @@ module.exports = {
 
       const existingUser = await dataService.findUserByEmail(email);
       if (existingUser) {
-        req.flash('error', 'An identity with this email is already registered in the Nexus network.');
+        req.flash('error', 'An identity with this email is already registered in the Bitwise network.');
         return res.redirect('/auth/login');
       }
 
@@ -119,7 +119,7 @@ module.exports = {
         badgeTier: newUser.badgeTier
       };
 
-      req.flash('success', `Nexus Identity Provisioned! Welcome aboard, ${newUser.name}.`);
+      req.flash('success', `Bitwise Identity Provisioned! Welcome aboard, ${newUser.name}.`);
       return res.redirect('/apply');
     } catch (err) {
       console.error('Registration error:', err);
@@ -131,10 +131,10 @@ module.exports = {
   // POST /auth/quick-demo
   async postQuickDemo(req, res) {
     const { role } = req.body;
-    let targetEmail = 'alex.chen@nexus.edu'; // default student
+    let targetEmail = 'alex.chen@bitwise.edu'; // default student
 
     if (role === 'admin') {
-      targetEmail = 'admin@nexus.edu';
+      targetEmail = 'admin@bitwise.edu';
     } else if (role === 'applicant') {
       targetEmail = 'priya.patel@gmail.com';
     }
