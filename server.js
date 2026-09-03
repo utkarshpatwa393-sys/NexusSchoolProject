@@ -29,7 +29,7 @@ app.set('view engine', 'ejs');
 // Session Configuration
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || 'nexus_cyber_secret_key_2026_super_secure',
+    secret: process.env.SESSION_SECRET || 'bitwise_cyber_secret_key_2026_super_secure',
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -51,7 +51,7 @@ app.use(routes);
 // 404 Cyber Handler
 app.use((req, res, next) => {
   res.status(404).render('pages/404', {
-    title: '404 - Neural Node Not Found | Nexus Institute of Technology'
+    title: '404 - Neural Node Not Found | Bitwise School of Technology'
   });
 });
 
@@ -59,7 +59,7 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   console.error('Unhandled System Error:', err);
   res.status(500).render('pages/500', {
-    title: '500 - Subsystem Malfunction | Nexus Institute of Technology',
+    title: '500 - Subsystem Malfunction | Bitwise School of Technology',
     error: process.env.NODE_ENV === 'development' ? err : null
   });
 });
@@ -69,7 +69,7 @@ function startServer(portToTry) {
   const numericPort = Number(portToTry);
   const server = app.listen(numericPort, () => {
     console.log('========================================================');
-    console.log(`⚡ [NEXUS INSTITUTE OF TECHNOLOGY]: Platform Online!`);
+    console.log(`⚡ [BITWISE SCHOOL OF TECHNOLOGY]: Platform Online!`);
     console.log(`🌐 Web Portal URL: http://localhost:${numericPort}`);
     console.log(`🛡️  Admin Command Center: http://localhost:${numericPort}/admin`);
     console.log(`🚀 Student Launchpad: http://localhost:${numericPort}/launchpad`);
@@ -78,7 +78,7 @@ function startServer(portToTry) {
 
   server.on('error', (err) => {
     if (err.code === 'EADDRINUSE') {
-      console.warn(`⚠️ [NEXUS SERVER]: Port ${numericPort} in use, attempting port ${numericPort + 1}...`);
+      console.warn(`⚠️ [BITWISE SERVER]: Port ${numericPort} in use, attempting port ${numericPort + 1}...`);
       startServer(numericPort + 1);
     } else {
       console.error('Server error:', err);

@@ -3,7 +3,7 @@ module.exports = {
     if (req.session && req.session.user) {
       return next();
     }
-    req.flash('error', 'Authentication required. Accessing the Nexus Terminal requires an active session.');
+    req.flash('error', 'Authentication required. Accessing the Bitwise Terminal requires an active session.');
     return res.redirect(`/auth/login?redirect=${encodeURIComponent(req.originalUrl)}`);
   },
 
@@ -26,7 +26,7 @@ module.exports = {
     if (req.session && req.session.user && ['student', 'admin'].includes(req.session.user.role)) {
       return next();
     }
-    req.flash('info', 'This feature is unlocked for matriculated Nexus Students & Fellows.');
+    req.flash('info', 'This feature is unlocked for matriculated Bitwise Students & Fellows.');
     return res.redirect('/dashboard');
   }
 };

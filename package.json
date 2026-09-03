@@ -1,7 +1,7 @@
 {
-  "name": "nexus-institute-of-technology",
+  "name": "bitwise-school-of-technology",
   "version": "1.0.0",
-  "description": "Next-Gen AI & Tech College Platform - Nexus Institute of Technology",
+  "description": "Next-Gen AI & Tech College Platform - Bitwise School of Technology",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -30,6 +30,6 @@
     "ejs",
     "cyberpunk"
   ],
-  "author": "Nexus Institute of Technology",
+  "author": "Bitwise School of Technology",
   "license": "ISC"
 }

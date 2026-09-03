@@ -13,7 +13,7 @@ module.exports = {
       const mentors = await dataService.getAllMentors();
 
       res.render('pages/dashboard/index', {
-        title: 'Nexus Student HUD & Dashboard | Nexus Institute of Technology',
+        title: 'Bitwise Student HUD & Dashboard | Bitwise School of Technology',
         user,
         application,
         userProjects,
@@ -23,7 +23,7 @@ module.exports = {
     } catch (err) {
       console.error('Dashboard load error:', err);
       res.render('pages/dashboard/index', {
-        title: 'Dashboard | Nexus Institute of Technology',
+        title: 'Dashboard | Bitwise School of Technology',
         user: req.session.user,
         application: null,
         userProjects: [],

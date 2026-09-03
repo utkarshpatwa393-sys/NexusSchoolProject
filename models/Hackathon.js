@@ -41,7 +41,7 @@ const hackathonSchema = new mongoose.Schema({
   },
   location: {
     type: String,
-    default: 'Nexus Virtual Cyber-Arena + Bangalore Hackerhouse'
+    default: 'Bitwise Virtual Cyber-Arena + Bangalore Hackerhouse'
   },
   sponsors: [{
     name: String,

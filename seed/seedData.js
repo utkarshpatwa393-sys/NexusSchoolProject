@@ -6,7 +6,7 @@ const seedMentors = [
     role: 'Principal Research Scientist (Reasoning & Multi-Agent LLMs)',
     company: 'OpenAI',
     avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
-    bio: 'Lead author on transformer architectures and autonomous reasoning loops. Mentoring NIT students in custom tokenizers and agentic reinforcement learning.',
+    bio: 'Lead author on transformer architectures and autonomous reasoning loops. Mentoring Bitwise students in custom tokenizers and agentic reinforcement learning.',
     domain: 'AI & LLMs',
     expertise: ['RLHF', 'Agentic Systems', 'Custom Kernels', 'PyTorch'],
     githubUrl: 'https://github.com',
@@ -20,7 +20,7 @@ const seedMentors = [
     role: 'Staff Infrastructure Engineer',
     company: 'Google DeepMind',
     avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
-    bio: 'Building supercomputer scale orchestration for Gemini. Guiding NIT students through distributed training, CUDA optimizations, and zero-downtime microservices.',
+    bio: 'Building supercomputer scale orchestration for Gemini. Guiding Bitwise students through distributed training, CUDA optimizations, and zero-downtime microservices.',
     domain: 'Distributed Systems',
     expertise: ['Distributed Tracing', 'Kubernetes', 'CUDA', 'Rust'],
     githubUrl: 'https://github.com',
@@ -46,9 +46,9 @@ const seedMentors = [
   {
     name: 'Ronan Gallagher',
     role: '2x Y Combinator Founder & General Partner',
-    company: 'Nexus Capital / Ex-Vercel',
+    company: 'Bitwise Capital / Ex-Vercel',
     avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
-    bio: 'Scaled developer platforms from $0 to $400M ARR. Leading the NIT Founder Fellowship, term sheet negotiations, and venture pitch architecture.',
+    bio: 'Scaled developer platforms from $0 to $400M ARR. Leading the Bitwise Founder Fellowship, term sheet negotiations, and venture pitch architecture.',
     domain: 'Founders & VC',
     expertise: ['Fundraising', 'Product-Led Growth', 'GTM Strategy', 'Developer Tooling'],
     githubUrl: 'https://github.com',
@@ -89,16 +89,16 @@ const seedMentors = [
 
 const seedHackathons = [
   {
-    title: 'NEXUS ZERO-1: Autonomous Agent Hackathon',
-    slug: 'nexus-zero-1-autonomous-agents',
+    title: 'BITWISE ZERO-1: Autonomous Agent Hackathon',
+    slug: 'bitwise-zero-1-autonomous-agents',
     tagline: '48-hour global sprint to build self-healing, multi-agent AI ecosystems.',
     theme: 'Agentic Workflows, Tool Use & Local LLM Fine-Tuning',
-    description: 'Nexus Zero-1 challenges engineering teams to design autonomous multi-agent pipelines that execute complex software development, economic reasoning, and autonomous code generation with zero human intervention.',
+    description: 'Bitwise Zero-1 challenges engineering teams to design autonomous multi-agent pipelines that execute complex software development, economic reasoning, and autonomous code generation with zero human intervention.',
     prizePool: '$75,000 Cash + 25,000 NVIDIA H100 Compute Credits',
     startDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
     endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     registrationDeadline: new Date(Date.now() + 4 * 24 * 60 * 60 * 1000),
-    location: 'Nexus Cyber Arena (Bangalore Campus + Global Live Stream)',
+    location: 'Bitwise Cyber Arena (Bangalore Campus + Global Live Stream)',
     sponsors: [
       { name: 'NVIDIA', tier: 'Compute Partner' },
       { name: 'OpenAI', tier: 'Model Partner' },
@@ -114,7 +114,7 @@ const seedHackathons = [
     ],
     judges: [
       { name: 'Dr. Aris Vance', role: 'Principal Scientist', company: 'OpenAI' },
-      { name: 'Ronan Gallagher', role: 'General Partner', company: 'Nexus Capital' }
+      { name: 'Ronan Gallagher', role: 'General Partner', company: 'Bitwise Capital' }
     ],
     participantCount: 380,
     bannerImage: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
@@ -127,11 +127,11 @@ const seedHackathons = [
     tagline: 'Build ultra-low latency, sub-millisecond distributed state engines.',
     theme: 'Distributed Consensus, Rust Micro-kernels & Real-time WebSockets',
     description: 'A pure systems engineering hackathon testing the limits of throughput, lock-free data structures, and edge computing nodes under artificial 10M RPS traffic storms.',
-    prizePool: '$50,000 Cash + Fast-Track YC / Nexus Residency Interviews',
+    prizePool: '$50,000 Cash + Fast-Track YC / Bitwise Residency Interviews',
     startDate: new Date(Date.now() + 18 * 24 * 60 * 60 * 1000),
     endDate: new Date(Date.now() + 20 * 24 * 60 * 60 * 1000),
     registrationDeadline: new Date(Date.now() + 16 * 24 * 60 * 60 * 1000),
-    location: 'Nexus Distributed Cyber Labs + Tokyo Hub',
+    location: 'Bitwise Distributed Cyber Labs + Tokyo Hub',
     sponsors: [
       { name: 'Cloudflare', tier: 'Edge Partner' },
       { name: 'Stripe', tier: 'Fintech Sponsor' },
@@ -175,7 +175,7 @@ const seedProjects = [
     title: 'SwarmVision Drone AI',
     slug: 'swarmvision-drone-ai',
     tagline: 'Autonomous spatial mapping and obstacle avoidance using distributed edge vision for search & rescue.',
-    description: 'Built during Year 2 Maker Lab at Nexus. Coordinates up to 12 micro-drones in GPS-denied cave and forest environments with real-time 3D Gaussian splatting.',
+    description: 'Built during Year 2 Maker Lab at Bitwise. Coordinates up to 12 micro-drones in GPS-denied cave and forest environments with real-time 3D Gaussian splatting.',
     creatorName: 'Rhea Nambiar & Tarun Sen',
     creatorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80',
     track: 'Robotics & Vision',
@@ -223,24 +223,24 @@ const seedProjects = [
 
 const seedUsers = [
   {
-    name: 'Nexus Admissions Commander (Admin)',
-    email: 'admin@nexus.edu',
-    password: 'Admin@Nexus2026',
+    name: 'Bitwise Admissions Commander (Admin)',
+    email: 'admin@bitwise.edu',
+    password: 'Admin@Bitwise2026',
     role: 'admin',
-    studentId: 'NIT-ADMIN-001',
+    studentId: 'BST-ADMIN-001',
     avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=400&q=80',
-    bio: 'Director of Admissions & Fellowships at Nexus Institute of Technology.',
-    githubUsername: 'nexus-admin',
+    bio: 'Director of Admissions & Fellowships at Bitwise School of Technology.',
+    githubUsername: 'bitwise-admin',
     track: 'founder-fellowship',
     computeHours: 9999,
-    badgeTier: 'Nexus Staff / Admin'
+    badgeTier: 'Bitwise Staff / Admin'
   },
   {
     name: 'Alex Chen (Student)',
-    email: 'alex.chen@nexus.edu',
-    password: 'Student@Nexus2026',
+    email: 'alex.chen@bitwise.edu',
+    password: 'Student@Bitwise2026',
     role: 'student',
-    studentId: 'NIT-2026-8492',
+    studentId: 'BST-2026-8492',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
     bio: 'B.Tech AI & CS Student. Working on Autonomous Agents, Neural Network distillation, and robotic vision.',
     githubUsername: 'alexchen-builder',
@@ -251,7 +251,7 @@ const seedUsers = [
   {
     name: 'Priya Patel (Applicant)',
     email: 'priya.patel@gmail.com',
-    password: 'Student@Nexus2026',
+    password: 'Student@Bitwise2026',
     role: 'applicant',
     avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80',
     bio: 'High school graduate & passionate coder. Building LLM agent prototypes in Python and Rust.',

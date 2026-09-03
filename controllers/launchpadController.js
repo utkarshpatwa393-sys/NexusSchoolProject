@@ -9,14 +9,14 @@ module.exports = {
       const projects = await dataService.getAllProjects(filter);
 
       res.render('pages/launchpad/index', {
-        title: 'Student Project Launchpad | Nexus Institute of Technology',
+        title: 'Student Project Launchpad | Bitwise School of Technology',
         projects,
         currentTrack: trackFilter
       });
     } catch (err) {
       console.error('Launchpad load error:', err);
       res.render('pages/launchpad/index', {
-        title: 'Launchpad | Nexus Institute of Technology',
+        title: 'Launchpad | Bitwise School of Technology',
         projects: [],
         currentTrack: ''
       });
@@ -26,7 +26,7 @@ module.exports = {
   // GET /launchpad/new - Submit new project
   getNewProject(req, res) {
     res.render('pages/launchpad/new', {
-      title: 'Deploy to Launchpad | Nexus Institute of Technology'
+      title: 'Deploy to Launchpad | Bitwise School of Technology'
     });
   },
 
@@ -58,10 +58,10 @@ module.exports = {
         imageUrl: imageUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
         demoUrl: demoUrl || '',
         githubUrl: githubUrl || '',
-        badge: user.role === 'student' ? 'Nexus Student' : 'Fellowship Project'
+        badge: user.role === 'student' ? 'Bitwise Student' : 'Fellowship Project'
       });
 
-      req.flash('success', `Project "${title}" deployed live to the Nexus Launchpad!`);
+      req.flash('success', `Project "${title}" deployed live to the Bitwise Launchpad!`);
       return res.redirect('/launchpad');
     } catch (err) {
       console.error('Error creating project:', err);

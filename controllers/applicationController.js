@@ -12,14 +12,14 @@ module.exports = {
       }
 
       res.render('pages/apply', {
-        title: 'Admissions Application Dossier | Nexus Institute of Technology',
+        title: 'Admissions Application Dossier | Bitwise School of Technology',
         existingApp: existingApp || null,
         user: req.session.user
       });
     } catch (err) {
       console.error('Error loading apply page:', err);
       res.render('pages/apply', {
-        title: 'Apply | Nexus Institute of Technology',
+        title: 'Apply | Bitwise School of Technology',
         existingApp: null,
         user: req.session.user
       });
@@ -51,12 +51,15 @@ module.exports = {
         bestProjectDescription,
         hackathonsAttended,
         visionEssay,
+        whyBitwise,
         whyNexus,
         founderAmbition,
         fundingPreference
       } = req.body;
 
-      if (!track || !fullName || !email || !highestEducation || !visionEssay || !whyNexus) {
+      const whySchool = whyBitwise || whyNexus;
+
+      if (!track || !fullName || !email || !highestEducation || !visionEssay || !whySchool) {
         req.flash('error', 'Please fill in all mandatory fields across the application wizard.');
         return res.redirect('/apply');
       }
@@ -94,7 +97,8 @@ module.exports = {
         },
         essayChallenge: {
           visionEssay,
-          whyNexus,
+          whyBitwise: whySchool,
+          whyNexus: whySchool,
           founderAmbition: founderAmbition || ''
         },
         fundingPreference: fundingPreference || 'income_share_agreement'
@@ -130,7 +134,7 @@ module.exports = {
       }
 
       res.render('pages/application-status', {
-        title: `Application Status [${application.applicationId}] | Nexus Institute of Technology`,
+        title: `Application Status [${application.applicationId}] | Bitwise School of Technology`,
         application
       });
     } catch (err) {

@@ -6,7 +6,7 @@ const applicationSchema = new mongoose.Schema({
     unique: true,
     default: function() {
       const num = Math.floor(100000 + Math.random() * 900000);
-      return `NEXUS-APP-${num}`;
+      return `BITWISE-APP-${num}`;
     }
   },
   user: {
@@ -65,9 +65,13 @@ const applicationSchema = new mongoose.Schema({
       type: String,
       required: true // "What will you build with 10,000 NVIDIA H100 compute hours?"
     },
+    whyBitwise: {
+      type: String,
+      default: ''
+    },
     whyNexus: {
       type: String,
-      required: true
+      default: ''
     },
     founderAmbition: {
       type: String,
@@ -112,7 +116,7 @@ applicationSchema.pre('save', function(next) {
   if (this.isNew && (!this.timeline || this.timeline.length === 0)) {
     this.timeline = [{
       title: 'Application Dossier Submitted',
-      description: 'Your application has been received and encrypted in the Nexus Admissions Vault.',
+      description: 'Your application has been received and encrypted in the Bitwise Admissions Vault.',
       date: new Date(),
       status: 'submitted'
     }];
